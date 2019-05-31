@@ -5,16 +5,18 @@ import Header from '../components/header';
 export default ({ data }) => (
   <div>
     <Header />
-    <h1>{data.site.siteMetadata.title}</h1>
+    <h1>About</h1>
+    <p>{data.contentfulPage.text.text}</p>
   </div>
-);
+)
 
 export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
+{
+  contentfulPage(slug: {eq: "about"}) {
+    name
+    text {
+      text
     }
   }
+}
 `

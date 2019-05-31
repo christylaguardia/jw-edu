@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-hello-world",
+  "name": "jw-edu-catalog",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "Jehovah's Witnesses Educational Resource Catalog",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -13,7 +13,9 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
+    "dotenv": "^8.0.0",
     "gatsby": "^2.7.5",
+    "gatsby-source-contentful": "^2.0.65",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
