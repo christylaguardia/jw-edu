@@ -1,5 +1,5 @@
 {
-  "name": "jw-edu-catalog",
+  "name": "jw-edu",
   "private": true,
   "description": "Jehovah's Witnesses Educational Resource Catalog",
   "version": "0.1.0",
@@ -26,9 +26,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
+    "url": "https://github.com/christylaguardia/jw-edu"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/christylaguardia/jw-edu/issues"
   }
 }
