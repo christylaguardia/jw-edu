@@ -1,20 +1,15 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Header from '../components/header';
+import "bulma/css/bulma.css";
+import Navigation from '../components/Navigation';
+import Header from '../components/Header';
+import Totals from '../components/Totals';
+import Tags from '../components/Tags';
 
-export default ({ data }) => (
+export default () => (
   <div>
+    <Navigation />
     <Header />
-    <h1>{data.site.siteMetadata.title}</h1>
+    <Totals />
+    <Tags />
   </div>
 );
-
-export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-  }
-`

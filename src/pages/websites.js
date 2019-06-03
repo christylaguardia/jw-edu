@@ -1,19 +1,22 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Header from '../components/header';
+import Navigation from '../components/Navigation';
+import Hero from "../components/Hero";
+import Website from "../components/Website";
 
 export default ({ data }) => (
   <div>
-    <Header />
-    <h1>Websites</h1>
-    {data && data.allContentfulWebsite.edges.map(({ node }) => (
-      <div>
-        <h3><a href={node.url.url}>{node.title}</a></h3>
-        <p>{node.description.description}</p>
+    <Navigation />
+    <Hero title="Websites" />
+    <div className="container">
+      <div className="section">
+        {data && data.allContentfulWebsite.edges.map(({ node }) => (
+          <Website node={node} />
+        ))}
       </div>
-    ))}
+    </div>
   </div>
-)
+);
 
 export const query = graphql`
   {
@@ -31,4 +34,4 @@ export const query = graphql`
       }
     }
   }
-`
+`;

@@ -7,12 +7,14 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "develop:clean": "rm-rf .cache && gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
+    "bulma": "^0.7.5",
     "dotenv": "^8.0.0",
     "gatsby": "^2.7.5",
     "gatsby-source-contentful": "^2.0.65",
