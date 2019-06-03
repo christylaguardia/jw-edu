@@ -22,6 +22,10 @@ export default () => (
             Websites
           </Link>
 
+          <Link className="navbar-item" to="/contact">
+            Contact
+          </Link>
+
         </div>
         {/* TODO: ignore missing href */}
         <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
