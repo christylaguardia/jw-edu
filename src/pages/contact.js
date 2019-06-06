@@ -1,8 +1,8 @@
 import React from "react"
-import Navigation from '../components/Navigation';
-import Hero from "../components/Hero";
+import { Hero } from "../components/Hero";
+import { Navigation } from '../components/Navigation';;
 
-export default ({ data }) => (
+export default () => (
   <div>
     <Navigation />
     <Hero title="Contact" />

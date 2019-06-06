@@ -1,5 +1,5 @@
 import React from "react";
-import { StaticQuery, graphql } from "gatsby";
+import { Link, StaticQuery, graphql } from "gatsby";
 
 const query = graphql`
   {
@@ -26,33 +26,39 @@ const query = graphql`
   }
 `;
 
-const LevelItem = ({ heading, title }) => (
-  <div className="level-item has-text-centered">
-    <div>
-      <p className="heading">{heading}</p>
-      <p className="title">{title}</p>
+const LevelItem = ({ heading, path, title }) => (
+  <Link to={path}>
+    <div className="level-item has-text-centered">
+      <div>
+        <p className="heading">{heading}</p>
+        <p className="title">{title}</p>
+      </div>
     </div>
-  </div>
+  </Link>
 );
 
-const Totals = ({ data }) => (
+const LevelItems = ({ data }) => (
   <div className="container">
     <div className="section">
       <nav className="level">
         <LevelItem
           heading="Authors"
+          path="/authors"
           title={data.allContentfulAuthor.pageInfo.itemCount}
         />
         <LevelItem
           heading="Books"
+          path="/books"
           title={data.allContentfulBook.pageInfo.itemCount}
         />
         <LevelItem
           heading="Websites"
+          path="/websites"
           title={data.allContentfulWebsite.pageInfo.itemCount}
         />
         <LevelItem
-          heading="Tags"
+          heading="Topics"
+          path="/topics"
           title={data.allContentfulTag.pageInfo.itemCount}
         />
       </nav>
@@ -60,9 +66,9 @@ const Totals = ({ data }) => (
   </div>
 );
 
-export default () => (
+export const Totals = () => (
   <StaticQuery
     query={query}
-    render={data => (<Totals data={data} />)}
+    render={data => (<LevelItems data={data} />)}
   />
 );

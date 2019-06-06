@@ -1,14 +1,13 @@
 import React from "react";
 
-export default ({ node }) => (
-  <div>
-    <p>
-      <a className="button is-text" href={node.url.url} target="_blank" rel="noopener noreferrer">
+export const Website = ({ node }) => (
+  <p>
+    <a href={node.url.url} target="_blank" rel="noopener noreferrer">
         {node.title}
-      </a>
-    </p>
-    <p>
+    </a>
+    <span> </span>
+    <span>
       {node.description.description}
-    </p>
-  </div>
+    </span>
+  </p>
 );

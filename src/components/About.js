@@ -1,7 +1,7 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 
-export default () => (
+export const About = () => (
   <StaticQuery
     query={query}
     render={data => (

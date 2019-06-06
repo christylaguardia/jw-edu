@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Navigation from '../components/Navigation';
-import Hero from "../components/Hero";
-import Website from "../components/Website";
+import { Hero } from "../components/Hero";
+import { Website } from "../components/Website";
+import { Navigation } from '../components/Navigation';;
 
 export default ({ data }) => (
   <div>

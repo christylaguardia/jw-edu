@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ title, subtitle }) => (
+export const Hero = ({ title, subtitle }) => (
   <section className="hero is-primary">
     <div className="hero-body">
       <div className="container">

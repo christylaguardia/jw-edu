@@ -1,8 +1,8 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby";
-import Hero from "./Hero";
+import { Hero } from "./Hero";
 
-export default () => (
+export const Header = () => (
   <StaticQuery
     query={query}
     render={data => (

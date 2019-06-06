@@ -1,7 +1,7 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Hero from "../components/Hero";
-import Navigation from '../components/Navigation';
+import { Hero } from "../components/Hero";
+import { Navigation } from '../components/Navigation';;
 
 export default ({ data }) => (
   <div>
@@ -10,7 +10,7 @@ export default ({ data }) => (
     <div className="container">
       <div className="section">
         {data && data.allContentfulAuthor.edges.map(({ node }) => (
-          <p>
+          <p key={node.id}>
             <Link to={`/authors/${node.id}`}>
               {node.name}
             </Link>

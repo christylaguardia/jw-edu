@@ -1,39 +1,61 @@
 import React from "react"
 import { Link } from "gatsby"
 
-export default () => (
-  <div className="container">
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div id="navbarBasicExample" className="navbar-menu">
-        <div className="navbar-start">
-          <Link className="navbar-item" to="/">
-            JW Edu
-          </Link>
+export class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isActive: false,
+    };
+    this.toggle = this.toggle.bind(this);
+  }
 
-          <Link className="navbar-item" to="/authors">
-            Authors
-          </Link>
+  toggle() {
+    this.setState(prevState => ({
+      isActive: !prevState.isActive,
+    }));
+  }
 
-          <Link className="navbar-item" to="/books">
-            Books
-          </Link>
+  render() {
+    const showHamburger = this.state.isActive ? 'is-active' : '';
+    return (
+      <div className="container">
+        <nav className="navbar" role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <Link className="navbar-item" to="/">
+              JW Catalog
+            </Link>
+            <div className={`navbar-burger burger ${showHamburger}`} onClick={this.toggle}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
 
-          <Link className="navbar-item" to="/websites">
-            Websites
-          </Link>
-
-          <Link className="navbar-item" to="/contact">
-            Contact
-          </Link>
-
-        </div>
-        {/* TODO: ignore missing href */}
-        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+          <div id="navbarBasicExample" className={`navbar-menu ${showHamburger}`}>
+            <div className="navbar-start">
+              <Link className="navbar-item" to="/authors">
+                Authors
+              </Link>
+              <Link className="navbar-item" to="/books">
+                Books
+              </Link>
+              <Link className="navbar-item" to="/websites">
+                Websites
+              </Link>
+              <Link className="navbar-item" to="/contact">
+                Contact
+              </Link>
+            </div>
+            {/* TODO: ignore missing href */}
+            {/* <a role="button" className={`navbar-burger ${this.state.isActive && 'is-active'}`} aria-label="menu" aria-expanded="false" onClick={this.toggle}>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a> */}
+          </div>
+        </nav>
       </div>
-    </nav>
-  </div>
-);
+    );
+  }
+}
