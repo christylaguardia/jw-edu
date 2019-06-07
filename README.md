@@ -12,7 +12,7 @@
 
 ```sh
 npm install
-gatsby develop
+npm run develop
 ```
 
 Your site is now running at [http:localhost:8000](http:localhost:8000).

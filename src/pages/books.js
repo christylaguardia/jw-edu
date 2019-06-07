@@ -11,13 +11,16 @@ export default ({ data }) => (
     <div className="container">
       <div className="section">
         {data && data.allContentfulBook.edges.map(({ node }) => (
-          <p>
-            <Link to={`/books/${node.id}`}>
-              {node.title}
-            </Link>
-            <span> by </span>
-            <Authors data={node.authors} />
-          </p>
+          <div className="columns" key={node.id}>
+            <div className="column">
+              <Link to={`/books/${node.id}`}>
+                {node.title}
+              </Link>
+            </div>
+            <div className="column">
+              <Authors data={node.authors} />
+            </div>
+          </div>
         ))}
       </div>
     </div>
