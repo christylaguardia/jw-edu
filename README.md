@@ -17,4 +17,31 @@ npm run develop
 
 Your site is now running at [http:localhost:8000](http:localhost:8000).
 
-You can run querys at [http://localhost:8000/___graphql](http://localhost:8000/___graphql).
+You can run queries at [http://localhost:8000/___graphql](http://localhost:8000/___graphql).
+
+## Gatsby
+
+<!-- TODO -->
+
+### Open Issue July 2019
+
+- [https://github.com/gatsbyjs/gatsby/issues/15344#issuecomment-508242874](https://github.com/gatsbyjs/gatsby/issues/15344#issuecomment-508242874)
+
+
+## Contentful
+
+[Contentful CLI](https://github.com/contentful/contentful-cli)
+
+```sh
+npm install -g contentful-cli
+```
+
+<!-- TODO -->
+
+## Netlify
+
+<!-- TODO -->
+
+## Algolia
+
+<!-- TODO -->
