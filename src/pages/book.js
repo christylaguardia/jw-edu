@@ -23,7 +23,9 @@ export default ({
           <div>
             By{" "}
             {authors.map(author => (
-              <Link key={author.id} to={`/authors/${author.id}`}>{author.name}</Link>
+              <Link key={author.id} to={`/authors/${author.id}`}>
+                {author.name}
+              </Link>
             ))}
           </div>
         )
@@ -44,10 +46,14 @@ export default ({
           <div className="container">
             <div className="section">
               <div class="content">
-                <p className="has-text-grey	has-text-weight-semibold">
-                  Description
-                </p>
-                <p>{description.description}</p>
+                {description && (
+                  <>
+                    <p className="has-text-grey	has-text-weight-semibold">
+                      Description
+                    </p>
+                    <p>{description.description}</p>
+                  </>
+                )}
                 <p className="has-text-grey	has-text-weight-semibold">
                   Published
                 </p>
@@ -63,7 +69,11 @@ export default ({
                 {tags && (
                   <div className="tags are-medium">
                     {tags.map(tag => (
-                      <Link key={tag.id} to={`/tags/${tag.id}`} className="tag is-link">
+                      <Link
+                        key={tag.id}
+                        to={`/tags/${tag.id}`}
+                        className="tag is-link"
+                      >
                         {tag.tag}
                       </Link>
                     ))}
