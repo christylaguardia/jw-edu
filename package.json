@@ -14,9 +14,10 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
-    "bulma": "^0.7.5",
+    "bulma": "^0.8.0",
     "dotenv": "^8.0.0",
-    "gatsby": "^2.7.5",
+    "gatsby": "^2.18.21",
+    "gatsby-plugin-material-ui": "^2.1.6",
     "gatsby-source-contentful": "^2.0.65",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
