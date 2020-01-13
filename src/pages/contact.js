@@ -1,6 +1,6 @@
 import React from "react"
-import { Hero } from "../components/Hero";
-import { Navigation } from '../components/Navigation';;
+import { Hero } from "../components/Hero"
+import { Navigation } from "../components/Navigation"
 
 export default () => (
   <div>
@@ -10,10 +10,17 @@ export default () => (
       <div className="section">
         <div className="columns">
           <div className="column is-half">
-            <form name="contact" method="POST" netlify-honeypot="bot-field" data-netlify="true">
-
-              <p style={{ display: 'none' }}>
-                <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
+            <form
+              name="contact"
+              method="POST"
+              netlify-honeypot="bot-field"
+              data-netlify="true"
+            >
+              <p style={{ display: "none" }}>
+                <label>
+                  Don’t fill this out if you're human:{" "}
+                  <input name="bot-field" />
+                </label>
               </p>
 
               <div className="field is-horizontal">
@@ -23,7 +30,12 @@ export default () => (
                 <div className="field-body">
                   <div className="field">
                     <p className="control">
-                      <input name="name" className="input" type="text" placeholder="Name" />
+                      <input
+                        name="name"
+                        className="input"
+                        type="text"
+                        placeholder="Name"
+                      />
                     </p>
                   </div>
                 </div>
@@ -36,7 +48,12 @@ export default () => (
                 <div className="field-body">
                   <div className="field">
                     <p className="control">
-                      <input name="email" className="input" type="email" placeholder="Recipient email" />
+                      <input
+                        name="email"
+                        className="input"
+                        type="email"
+                        placeholder="Recipient email"
+                      />
                     </p>
                   </div>
                 </div>
@@ -49,8 +66,12 @@ export default () => (
                 <div className="field-body">
                   <div className="field">
                     <p className="control">
-                      <textarea name="message" class="textarea" placeholder="Message"></textarea>
-                      </p>
+                      <textarea
+                        name="message"
+                        class="textarea"
+                        placeholder="Message"
+                      ></textarea>
+                    </p>
                   </div>
                 </div>
               </div>
@@ -58,13 +79,14 @@ export default () => (
               <div data-netlify-recaptcha="true"></div>
 
               <div className="buttons has-addons is-right">
-                <button className="button is-primary" type="submit">Send</button>
+                <button className="button is-primary" type="submit">
+                  Send
+                </button>
               </div>
             </form>
-
           </div>
         </div>
       </div>
     </div>
   </div>
-);
+)

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, StaticQuery, graphql } from "gatsby";
+import React from "react"
+import { Link, StaticQuery, graphql } from "gatsby"
 
 const query = graphql`
   {
@@ -24,7 +24,7 @@ const query = graphql`
       }
     }
   }
-`;
+`
 
 const LevelItem = ({ heading, path, title }) => (
   <Link to={path}>
@@ -35,7 +35,7 @@ const LevelItem = ({ heading, path, title }) => (
       </div>
     </div>
   </Link>
-);
+)
 
 const LevelItems = ({ data }) => (
   <div className="container">
@@ -64,11 +64,8 @@ const LevelItems = ({ data }) => (
       </nav>
     </div>
   </div>
-);
+)
 
 export const Totals = () => (
-  <StaticQuery
-    query={query}
-    render={data => (<LevelItems data={data} />)}
-  />
-);
+  <StaticQuery query={query} render={data => <LevelItems data={data} />} />
+)

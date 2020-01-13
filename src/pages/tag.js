@@ -6,22 +6,17 @@ import { Navigation } from "../components/Navigation"
 export default ({ data }) => (
   <div>
     <Navigation />
-    <Hero title="Books" />
+    <Hero title={data.allContentfulTag.edges[0].node.tag} />
     <div className="container">
       <div className="section">
         <div class="content">
           {data &&
             data.allContentfulBook.edges.map(({ node }) => (
               <p key={node.id}>
-                <Link to={`/books/${node.id}`}>{node.title}</Link>
-                {node.authors && (
-                  <>
-                    <span> by </span>
-                    {node.authors.map(author => (
-                      <Link key={author.id} to={`/authors/${author.id}`}>{author.name}</Link>
-                    ))}
-                  </>
-                )}
+                <Link to={`/books/${node.id}`}>{node.title}</Link> by{" "}
+                {node.authors.map(author => (
+                  <Link key={author.id} to={`/authors/${author.id}`}>{author.name}</Link>
+                ))}
               </p>
             ))}
         </div>
@@ -31,8 +26,8 @@ export default ({ data }) => (
 )
 
 export const query = graphql`
-  {
-    allContentfulBook {
+  query TagPage($id: String) {
+    allContentfulBook(filter: { tags: { elemMatch: { id: { eq: $id } } } }) {
       edges {
         node {
           id
@@ -41,6 +36,14 @@ export const query = graphql`
             id
             name
           }
+        }
+      }
+    }
+    allContentfulTag(filter: { id: { eq: $id } }) {
+      edges {
+        node {
+          id
+          tag
         }
       }
     }

@@ -1,12 +1,14 @@
-import React from "react";
-import { Link, StaticQuery, graphql } from "gatsby";
+import React from "react"
+import { Link, StaticQuery, graphql } from "gatsby"
 
 // TODO: pass variable to graphql is not working
 
 const query = authorId => (
   graphql`
     {
-      allContentfulBook(filter: {authors: {elemMatch: {contentful_id: {eq: $authorId}}}}) {
+      allContentfulBook(
+        filter: { authors: { elemMatch: { contentful_id: { eq: $authorId } } } }
+      ) {
         pageInfo {
           itemCount
         }
@@ -14,7 +16,7 @@ const query = authorId => (
     }
   `,
   { authorId: authorId }
-);
+)
 
 const LevelItem = ({ heading, path, title }) => (
   <Link to={path}>
@@ -25,7 +27,7 @@ const LevelItem = ({ heading, path, title }) => (
       </div>
     </div>
   </Link>
-);
+)
 
 const LevelItems = ({ data }) => (
   <div className="container">
@@ -36,19 +38,12 @@ const LevelItems = ({ data }) => (
           path="/books"
           title={data.allContentfulBook.pageInfo.itemCount}
         />
-        <LevelItem
-          heading="Websites"
-          path="/websites"
-          title="?"
-        />
+        <LevelItem heading="Websites" path="/websites" title="?" />
       </nav>
     </div>
   </div>
-);
+)
 
 export const Totals = () => (
-  <StaticQuery
-    query={query}
-    render={data => (<LevelItems data={data} />)}
-  />
-);
+  <StaticQuery query={query} render={data => <LevelItems data={data} />} />
+)

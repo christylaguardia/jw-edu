@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql } from "gatsby"
-import { Hero } from "../components/Hero";
-import { Website } from "../components/Website";
-import { Navigation } from '../components/Navigation';;
+import { Hero } from "../components/Hero"
+import { Website } from "../components/Website"
+import { Navigation } from "../components/Navigation"
 
 export default ({ data }) => (
   <div>
@@ -10,19 +10,21 @@ export default ({ data }) => (
     <Hero title="Websites" />
     <div className="container">
       <div className="section">
-        {data && data.allContentfulWebsite.edges.map(({ node }) => (
-          <Website node={node} />
-        ))}
+        {data &&
+          data.allContentfulWebsite.edges.map(({ node }) => (
+            <Website key={node.id} node={node} />
+          ))}
       </div>
     </div>
   </div>
-);
+)
 
 export const query = graphql`
   {
     allContentfulWebsite {
       edges {
         node {
+          id
           title
           url {
             url
@@ -34,4 +36,4 @@ export const query = graphql`
       }
     }
   }
-`;
+`
