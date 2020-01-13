@@ -13,10 +13,17 @@ export default ({ data }) => (
           {data &&
             data.allContentfulBook.edges.map(({ node }) => (
               <p key={node.id}>
-                <Link to={`/books/${node.id}`}>{node.title}</Link> by{" "}
-                {node.authors.map(author => (
-                  <Link key={author.id} to={`/authors/${author.id}`}>{author.name}</Link>
-                ))}
+                <Link to={`/books/${node.id}`}>{node.title}</Link>
+                {node.authors && (
+                  <>
+                    <span> by </span>
+                    {node.authors.map(author => (
+                      <Link key={author.id} to={`/authors/${author.id}`}>
+                        {author.name}
+                      </Link>
+                    ))}
+                  </>
+                )}
               </p>
             ))}
         </div>

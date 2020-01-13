@@ -21,7 +21,7 @@ export default ({
       subtitle={
         authors && (
           <div>
-            By{" "}
+            <span>By </span>
             {authors.map(author => (
               <Link key={author.id} to={`/authors/${author.id}`}>
                 {author.name}
