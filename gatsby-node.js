@@ -1,6 +1,7 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
+// What does this do?
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions
   if (node.internal.type === `Author`) {
@@ -17,41 +18,23 @@ exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
   return graphql(`
     {
-      allContentfulBook {
+      allContentfulResource {
         edges {
           node {
             id
             title
-            description {
-              id
-              description
-            }
-            publishDate
+            type
+            yearPublished
             authors {
               id
               name
             }
-            tags {
+            description {
               id
-              tag
+              description
             }
-            isbns {
-              id
-              isbn
-            }
-            amazonHtml
-          }
-        }
-      }
-      allContentfulAuthor {
-        edges {
-          node {
-            id
-            name
-            book {
-              id
-              title
-              publishDate
+            embedHtml {
+              embedHtml
             }
           }
         }
@@ -66,36 +49,51 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
   `).then(result => {
-    result.data.allContentfulBook.edges.forEach(({ node }) => {
+    result.data.allContentfulResource.edges.forEach(({ node }) => {
       createPage({
-        path: `books/${node.id}`,
-        component: path.resolve(`./src/pages/book.js`),
+        path: `resource/${node.id}`,
+        component: path.resolve(`./src/pages/resource.js`),
         context: {
           // Data passed to context is available
           // in page queries as GraphQL variables.
           id: node.id,
           title: node.title,
-          description: node.description,
-          publishDate: node.publishDate,
+          type: node.type,
           authors: node.authors,
+          yearPublished: node.yearPublished,
           tags: node.tags,
-          amazonHtml: node.amazonHtml,
+          description: node.description,
+          embedHtml: node.embedHtml,
+          purchaseUrl: node.purchaseUrl,
         },
       })
     })
-    result.data.allContentfulAuthor.edges.forEach(({ node }) => {
-      createPage({
-        path: `authors/${node.id}`,
-        component: path.resolve(`./src/pages/author.js`),
-        context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
-          id: node.id,
-          name: node.name,
-          book: node.book,
-        },
-      })
-    })
+    // allContentfulAuthor {
+    //   edges {
+    //     node {
+    //       id
+    //       name
+    //       book {
+    //         id
+    //         title
+    //         publishDate
+    //       }
+    //     }
+    //   }
+    // }
+    // result.data.allContentfulAuthor.edges.forEach(({ node }) => {
+    //   createPage({
+    //     path: `authors/${node.id}`,
+    //     component: path.resolve(`./src/pages/author.js`),
+    //     context: {
+    //       // Data passed to context is available
+    //       // in page queries as GraphQL variables.
+    //       id: node.id,
+    //       name: node.name,
+    //       book: node.book,
+    //     },
+    //   })
+    // })
     result.data.allContentfulTag.edges.forEach(({ node }) => {
       createPage({
         path: `tags/${node.id}`,
@@ -109,4 +107,5 @@ exports.createPages = ({ graphql, actions }) => {
       })
     })
   })
+  // TODO: catch?
 }

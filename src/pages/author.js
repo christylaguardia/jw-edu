@@ -1,7 +1,7 @@
 import React from "react"
-import { Link } from "gatsby"
-import { Hero } from "../components/Hero"
-import { Navigation } from "../components/Navigation"
+// import Link from "gatsby"
+import Hero from "../components/Hero"
+import Navigation from "../components/Navigation"
 
 export default ({ pageContext }) => (
   <>
@@ -9,12 +9,14 @@ export default ({ pageContext }) => (
     <Hero title={pageContext.name} />
     <div className="container">
       <div className="section">
-        {pageContext.book &&
-          pageContext.book.map(book => (
-            <p key={book.id}>
-              <Link to={`/books/${book.id}`}>{book.title}</Link>
+        author
+        {/* TODO */}
+        {/* {pageContext.author &&
+          pageContext.author.map(author => (
+            <p key={author.id}>
+              <Link to={`/authors/${author.id}`}>{author.title}</Link>
             </p>
-          ))}
+          ))} */}
       </div>
     </div>
   </>

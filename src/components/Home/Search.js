@@ -1,8 +1,8 @@
 import React, { Component } from "react"
 
-export class Search extends Component {
+class Search extends Component {
   state = {
-    resource: 'books',
+    resource: "books",
     keyword: "",
   }
 
@@ -22,14 +22,18 @@ export class Search extends Component {
   }
 
   render() {
-    const { resource, keyword } = this.state;
+    const { resource, keyword } = this.state
 
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="field has-addons">
           <p className="control">
             <span className="select is-rounded">
-              <select name="resource" value={resource} onChange={this.handleInputChange}>
+              <select
+                name="resource"
+                value={resource}
+                onChange={this.handleInputChange}
+              >
                 <option value="books">Books</option>
                 <option value="websites">Websites</option>
                 <option value="authors">Authors</option>
@@ -47,7 +51,11 @@ export class Search extends Component {
             />
           </div>
           <div className="control">
-            <button className="button is-primary is-rounded" type="submit" disabled={!resource || !keyword}>
+            <button
+              className="button is-primary is-rounded"
+              type="submit"
+              disabled={!resource || !keyword}
+            >
               Search
             </button>
           </div>
@@ -69,3 +77,5 @@ export class Search extends Component {
     )
   }
 }
+
+export default Search

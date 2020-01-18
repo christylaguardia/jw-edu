@@ -1,6 +1,7 @@
 import React from "react"
+import PropTypes from "prop-types"
 
-export const Hero = ({ title, subtitle }) => (
+const Hero = ({ title, subtitle }) => (
   <section className="hero is-primary">
     <div className="hero-body">
       <div className="container">
@@ -10,3 +11,10 @@ export const Hero = ({ title, subtitle }) => (
     </div>
   </section>
 )
+
+Hero.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+}
+
+export default Hero

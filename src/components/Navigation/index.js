@@ -1,7 +1,7 @@
-import React from "react"
+import React, { Component } from "react"
 import { Link } from "gatsby"
 
-export class Navigation extends React.Component {
+class Navigation extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -37,11 +37,8 @@ export class Navigation extends React.Component {
 
           <div id="hamburger-menu" className={`navbar-menu ${showHamburger}`}>
             <div className="navbar-end">
-              <Link className="navbar-item" to="/books">
-                Books
-              </Link>
-              <Link className="navbar-item" to="/websites">
-                Websites
+              <Link className="navbar-item" to="/resources">
+                Browse Resources
               </Link>
               <Link className="navbar-item" to="/about">
                 About
@@ -67,3 +64,5 @@ export class Navigation extends React.Component {
     )
   }
 }
+
+export default Navigation

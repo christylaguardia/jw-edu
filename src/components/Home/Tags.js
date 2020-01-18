@@ -1,7 +1,7 @@
 import React from "react"
 import { StaticQuery, Link, graphql } from "gatsby"
 
-export const Tags = () => (
+const Tags = () => (
   <StaticQuery
     query={query}
     render={data => (
@@ -28,3 +28,5 @@ const query = graphql`
     }
   }
 `
+
+export default Tags

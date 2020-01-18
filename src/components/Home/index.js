@@ -1,10 +1,10 @@
 import React from "react"
-// import { Link } from "gatsby"
-import { Navigation } from "../components/Navigation"
-import { Search } from "../components/Search"
-import { Tags } from "../components/Tags"
+import { Link } from "gatsby"
+import Navigation from "../Navigation"
+import Search from "./Search"
+import Tags from "./Tags"
 
-export const Home = () => (
+const Home = () => (
   <>
     <section className="hero is-large">
       <div className="hero-head">
@@ -17,11 +17,15 @@ export const Home = () => (
           <h2 className="subtitle">
             Search the catalog of print and electronic resources.
           </h2>
-          <Search />
+
+          <Link className="button is-primary is-rounded is-large" to="/resources">Browse Resources</Link>
+          {/* <Search /> */}
         </div>
-        <div className="section">
+
+        {/* <div className="section">
           <Tags />
-        </div>
+        </div> */}
+
       </div>
 
       {/* <div className="hero-foot">
@@ -50,3 +54,5 @@ export const Home = () => (
     </section>
   </>
 )
+
+export default Home

@@ -1,7 +1,7 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import { Hero } from "../components/Hero"
-import { Navigation } from "../components/Navigation"
+import Hero from "../components/Hero"
+import Navigation from "../components/Navigation"
 
 export default ({ data }) => (
   <div>
@@ -9,7 +9,7 @@ export default ({ data }) => (
     <Hero title={data.allContentfulTag.edges[0].node.tag} />
     <div className="container">
       <div className="section">
-        <div class="content">
+        <div className="content">
           {data &&
             data.allContentfulBook.edges.map(({ node }) => (
               <p key={node.id}>

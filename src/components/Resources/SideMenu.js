@@ -1,6 +1,7 @@
 import React from "react"
+import PropTypes from "prop-types"
 
-export const SideMenu = ({ title }) => (
+const SideMenu = ({ title }) => (
   <>
     <article className="panel is-primary is-fixed-top">
       <p className="panel-heading">{title}</p>
@@ -50,3 +51,9 @@ export const SideMenu = ({ title }) => (
     </article>
   </>
 )
+
+SideMenu.propTypes = {
+  title: PropTypes.string.isRequired,
+}
+
+export default SideMenu
