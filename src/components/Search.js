@@ -1,8 +1,9 @@
-import React from "react"
+import React, { Component } from "react"
 
-export default class IndexPage extends React.Component {
+export class Search extends Component {
   state = {
-    search: "",
+    resource: 'books',
+    keyword: "",
   }
 
   handleInputChange = event => {
@@ -17,16 +18,45 @@ export default class IndexPage extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    alert(`Searching "${this.state.search}"...`)
+    alert(`${this.state.resource}?keyword="${this.state.keyword}"`)
   }
 
   render() {
+    const { resource, keyword } = this.state;
+
     return (
       <form onSubmit={this.handleSubmit}>
-        <label>
-          Search
+        <div className="field has-addons">
+          <p className="control">
+            <span className="select is-rounded">
+              <select name="resource" value={resource} onChange={this.handleInputChange}>
+                <option value="books">Books</option>
+                <option value="websites">Websites</option>
+                <option value="authors">Authors</option>
+              </select>
+            </span>
+          </p>
+          <div className="control is-expanded">
+            <input
+              className="input is-rounded"
+              name="keyword"
+              type="text"
+              placeholder="Find a resource"
+              value={keyword}
+              onChange={this.handleInputChange}
+            />
+          </div>
+          <div className="control">
+            <button className="button is-primary is-rounded" type="submit" disabled={!resource || !keyword}>
+              Search
+            </button>
+          </div>
+        </div>
+
+        {/* <label>
+          Search the resources
           <input
-            class="input is-rounded"
+            className="input is-rounded"
             type="text"
             name="search"
             placeholder="Search..."
@@ -34,7 +64,7 @@ export default class IndexPage extends React.Component {
             onChange={this.handleInputChange}
           />
         </label>
-        <button type="submit">Submit</button>
+        <button className="button is-primary is-rounded" type="submit">Submit</button> */}
       </form>
     )
   }

@@ -1,6 +1,7 @@
 import React from "react"
 // import { Link } from "gatsby"
 import { Navigation } from "../components/Navigation"
+import { Search } from "../components/Search"
 import { Tags } from "../components/Tags"
 
 export const Home = () => (
@@ -16,7 +17,7 @@ export const Home = () => (
           <h2 className="subtitle">
             Search the catalog of print and electronic resources.
           </h2>
-          {/* <Search /> */}
+          <Search />
         </div>
         <div className="section">
           <Tags />
