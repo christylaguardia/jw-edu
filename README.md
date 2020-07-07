@@ -1,8 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/858b34d7-67c3-48cc-9390-786b969d9a7a/deploy-status)](https://app.netlify.com/sites/jwedu/deploys)
 
-# Jehovah's Witnesses Educational Resource Catalog
+# Educational Resources on Jehovah's Witnesses and Cults
 
-[Production](https://jwedu.netlify.com/)
+[Production](https://culteducation.netlify.app/)
 
 ## About
 
@@ -17,7 +17,7 @@ npm run develop
 
 Your site is now running at [http:localhost:8000](http:localhost:8000).
 
-You can run queries at [http://localhost:8000/___graphql](http://localhost:8000/___graphql).
+You can run queries at [http://localhost:8000/\_\_\_graphql](http://localhost:8000/___graphql).
 
 ## Gatsby
 
@@ -26,7 +26,6 @@ You can run queries at [http://localhost:8000/___graphql](http://localhost:8000/
 ### Open Issue July 2019
 
 - [https://github.com/gatsbyjs/gatsby/issues/15344#issuecomment-508242874](https://github.com/gatsbyjs/gatsby/issues/15344#issuecomment-508242874)
-
 
 ## Contentful
 

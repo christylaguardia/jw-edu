@@ -1,7 +1,7 @@
 {
-  "name": "jw-edu",
+  "name": "cult-education",
   "private": true,
-  "description": "Jehovah's Witnesses Educational Resource Catalog",
+  "description": "Educational Resources on Jehovah's Witnesses and Cults",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -29,9 +29,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/christylaguardia/jw-edu"
+    "url": "https://github.com/christylaguardia/cult-education"
   },
   "bugs": {
-    "url": "https://github.com/christylaguardia/jw-edu/issues"
+    "url": "https://github.com/christylaguardia/cult-education/issues"
   }
 }
