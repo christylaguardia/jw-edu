@@ -5,6 +5,8 @@ import { format, compareAsc } from "date-fns";
 import withPageLayout from "../components/Layout/withPageLayout";
 
 const Book = ({ pageContext }) => {
+  if (!pageContext.node) return null;
+
   const { volumeInfo, accessInfo } = pageContext.node;
   const {
     title,
