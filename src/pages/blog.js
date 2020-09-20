@@ -1,7 +1,7 @@
 import React from "react";
 import withPageLayout from "../components/Layout/withPageLayout";
 
-const Blog = ({ pageContext }) => {
+const Blog = props => {
   const { pageContext } = props;
 
   if (!pageContext) return <p>Loading...</p>; // TODO:
