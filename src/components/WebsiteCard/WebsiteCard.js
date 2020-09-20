@@ -13,11 +13,7 @@ export const WebsiteCard = ({ name, url, tags }) => (
       </div>
     </div>
     <div className="card-footer">
-      <div className="tags are-medium">
-        {tags.map(tag => (
-          <span className="tag">{tag}</span>
-        ))}
-      </div>
+      <div className="tags are-medium">{tags && tags.map(tag => <span className="tag">{tag}</span>)}</div>
     </div>
   </div>
 );
