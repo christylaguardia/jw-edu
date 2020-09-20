@@ -2,11 +2,12 @@ import React from "react";
 import withPageLayout from "../components/Layout/withPageLayout";
 
 const Blog = props => {
+  // console.log(props);
   const { pageContext } = props;
 
   if (!pageContext) return <p>Loading...</p>; // TODO:
 
-  const { title, date, markdown } = pageContext.node;
+  const { title } = pageContext.node;
 
   return (
     <div className="content">
