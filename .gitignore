@@ -68,3 +68,11 @@ yarn-error.log
 # Yarn Integrity file
 .yarn-integrity
 .vscode/settings.json
+
+# Data files
+data/import
+data/source
+data/google-books-api/files
+
+# Firebase keys
+firebase-key.json

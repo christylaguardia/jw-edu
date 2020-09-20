@@ -1,5 +1,5 @@
 {
-  "name": "cult-education",
+  "name": "jw-research",
   "private": true,
   "description": "Educational Resources on Jehovah's Witnesses and Cults",
   "version": "0.1.0",
@@ -14,24 +14,46 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {
-    "bulma": "^0.8.0",
+    "bulma": "^0.8.2",
+    "contentful-management": "^6.1.2",
     "dotenv": "^8.0.0",
-    "gatsby": "^2.18.21",
+    "firebase": "^7.21.0",
+    "gatsby": "^2.24.57",
+    "gatsby-plugin-firebase": "^0.2.0-beta.4",
+    "gatsby-plugin-fontawesome-css": "^1.0.0",
+    "gatsby-plugin-graphql-loader": "^1.0.2",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
-    "gatsby-source-contentful": "^2.0.65",
-    "query-string": "^6.9.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "gatsby-plugin-react-helmet": "^3.3.11",
+    "gatsby-plugin-sass": "^2.3.13",
+    "gatsby-plugin-transition-link": "^1.20.2",
+    "gatsby-source-contentful": "^2.3.45",
+    "gatsby-transformer-remark": "^2.8.35",
+    "graphql-tag": "^2.11.0",
+    "gsap": "^3.5.1",
+    "json-concat": "0.0.1",
+    "qss": "^2.0.3",
+    "query-string": "^6.13.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-firebase-hooks": "^2.2.0",
+    "react-helmet": "^6.1.0",
+    "sass": "^1.26.11",
+    "sass-loader": "^10.0.2",
+    "superagent": "^6.1.0",
+    "typeface-josefin-sans": "0.0.75",
+    "typeface-lato": "0.0.75"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "gatsby-source-firebase": "^1.0.0",
+    "node-sass": "^4.14.1",
     "prettier": "^1.17.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/christylaguardia/cult-education"
+    "url": "https://github.com/christylaguardia/jw-research"
   },
   "bugs": {
-    "url": "https://github.com/christylaguardia/cult-education/issues"
+    "url": "https://github.com/christylaguardia/jw-research/issues"
   }
 }

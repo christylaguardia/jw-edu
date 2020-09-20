@@ -1,16 +1,26 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/858b34d7-67c3-48cc-9390-786b969d9a7a/deploy-status)](https://app.netlify.com/sites/jwedu/deploys)
+# JW Research
 
-# Educational Resources on Jehovah's Witnesses and Cults
+Educational Resources on Jehovah's Witnesses and Cults
 
-[Production](https://culteducation.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/858b34d7-67c3-48cc-9390-786b969d9a7a/deploy-status)](https://app.netlify.com/sites/jw-research/deploys)
+
+[Production](https://jw-research.netlify.app/)
 
 ## About
 
-[Gatsby + Contentful + Netlify](https://www.gatsbyjs.org/blog/2017-12-06-gatsby-plus-contentful-plus-netlify/)
+<!-- TODO -->
 
 ## Getting Started
 
-```sh
+Install the [gatsby cli](https://www.gatsbyjs.com/docs/gatsby-cli/):
+
+```bash
+npm install -g gatsby-cli
+```
+
+Run the app:
+
+```bash
 npm install
 npm run develop
 ```
@@ -23,15 +33,15 @@ You can run queries at [http://localhost:8000/\_\_\_graphql](http://localhost:80
 
 <!-- TODO -->
 
-### Open Issue July 2019
+## Firebase
 
-- [https://github.com/gatsbyjs/gatsby/issues/15344#issuecomment-508242874](https://github.com/gatsbyjs/gatsby/issues/15344#issuecomment-508242874)
+<!-- TODO -->
 
 ## Contentful
 
 [Contentful CLI](https://github.com/contentful/contentful-cli)
 
-```sh
+```bash
 npm install -g contentful-cli
 ```
 

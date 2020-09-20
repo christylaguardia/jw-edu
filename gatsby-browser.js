@@ -1,2 +1,4 @@
-import "./src/styles/global.css"
-import "@fortawesome/fontawesome-free"
+import "@fortawesome/fontawesome-free";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/functions";

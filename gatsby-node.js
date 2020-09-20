@@ -1,111 +1,181 @@
-const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const path = require("path");
 
-// What does this do?
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Author`) {
-    const id = createFilePath({ node, getNode, basePath: `authors` })
-    createNodeField({
-      node,
-      name: `id`,
-      value: id,
-    })
-  }
-}
-
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
-  return graphql(`
-    {
-      allContentfulResource {
-        edges {
-          node {
-            id
+const QUERIES = {
+  BOOK_LIST: `
+  {
+    allBookDetails(
+      limit: 1000,
+      sort: {fields: volumeInfo___publishedDate, order: DESC},
+      filter: {volumeInfo: {publishedDate: {ne: null}}}
+    ) {
+      edges {
+        node {
+          id
+          volumeInfo {
             title
-            type
-            yearPublished
-            authors {
-              id
-              name
-            }
-            description {
-              id
-              description
-            }
-            embedHtml {
-              embedHtml
+            authors
+            publishedDate
+            imageLinks {
+              thumbnail
             }
           }
         }
       }
-      allContentfulTag {
-        edges {
-          node {
+    }
+  }
+  `,
+  BOOK_DETAILS: `
+  {
+    allBookDetails(limit: 1000) {
+      edges {
+        node {
+          id
+          selfLink
+          volumeInfo {
+            title
+            subtitle
+            authors
+            description
+            imageLinks {
+              small
+              thumbnail
+            }
+            publishedDate
+            pageCount
+            averageRating
+            ratingsCount
+          }
+          accessInfo {
+            webReaderLink
+            embeddable
+          }
+        }
+      }
+    }
+  }
+  `,
+  WEBSITE_LIST: `
+  {
+    allContentfulWebsite(limit: 1000, filter: { hide: { ne: true } }) {
+      edges {
+        node {
+          id
+          name
+          url
+          contributors {
+            id
+            name
+          }
+          tags {
             id
             tag
           }
         }
       }
     }
-  `).then(result => {
-    result.data.allContentfulResource.edges.forEach(({ node }) => {
-      createPage({
-        path: `resource/${node.id}`,
-        component: path.resolve(`./src/pages/resource.js`),
-        context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
-          id: node.id,
-          title: node.title,
-          type: node.type,
-          authors: node.authors,
-          yearPublished: node.yearPublished,
-          tags: node.tags,
-          description: node.description,
-          embedHtml: node.embedHtml,
-          purchaseUrl: node.purchaseUrl,
-        },
-      })
-    })
-    // allContentfulAuthor {
-    //   edges {
-    //     node {
-    //       id
-    //       name
-    //       book {
-    //         id
-    //         title
-    //         publishDate
-    //       }
-    //     }
-    //   }
-    // }
-    // result.data.allContentfulAuthor.edges.forEach(({ node }) => {
-    //   createPage({
-    //     path: `authors/${node.id}`,
-    //     component: path.resolve(`./src/pages/author.js`),
-    //     context: {
-    //       // Data passed to context is available
-    //       // in page queries as GraphQL variables.
-    //       id: node.id,
-    //       name: node.name,
-    //       book: node.book,
-    //     },
-    //   })
-    // })
-    result.data.allContentfulTag.edges.forEach(({ node }) => {
-      createPage({
-        path: `tags/${node.id}`,
-        component: path.resolve(`./src/pages/tag.js`),
-        context: {
-          // Data passed to context is available
-          // in page queries as GraphQL variables.
-          id: node.id,
-          tag: node.tag,
-        },
-      })
-    })
-  })
-  // TODO: catch?
+  }
+  `,
+  BLOG: `
+  {
+    allContentfulBlog(limit: 1000, filter: { hide: { ne: true } }) {
+      edges {
+        node {
+          id
+          slug
+          title
+          markdown {
+            childMarkdownRemark {
+              html
+            }
+          }
+        }
+      }
+    }
+  }
+  `,
+};
+
+function createBookListPages({ result, createPage }) {
+  const books = result.data.allBookDetails.edges;
+  const booksTotal = books.length;
+  const booksPerPage = 10;
+  const numPages = Math.ceil(booksTotal / booksPerPage);
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/books` : `/books/${i + 1}`,
+      component: path.resolve(`./src/templates/book-list.js`),
+      context: {
+        limit: booksPerPage,
+        skip: i * booksPerPage,
+        numPages,
+        currentPage: i + 1,
+        total: booksTotal,
+      },
+    });
+  });
 }
+
+function createBookDetailPages({ result, createPage }) {
+  result.data.allBookDetails.edges.forEach(({ node }) => {
+    createPage({
+      path: `book/${node.id}`,
+      component: path.resolve(`./src/pages/book.js`),
+      context: {
+        node: node,
+      },
+    });
+  });
+}
+
+function createWebsitesPage({ result, createPage }) {
+  const websites = result.data.allContentfulWebsite.edges;
+  const websitesTotal = websites.length;
+  const websitesPerPage = 10;
+  const numPages = Math.ceil(websitesTotal / websitesPerPage);
+
+  Array.from({ length: numPages }).forEach((_, i) => {
+    createPage({
+      path: i === 0 ? `/websites` : `/websites/${i + 1}`,
+      component: path.resolve(`./src/templates/website-list.js`),
+      context: {
+        limit: websitesPerPage,
+        skip: i * websitesPerPage,
+        numPages,
+        currentPage: i + 1,
+        total: websitesTotal,
+      },
+    });
+  });
+}
+
+function createBlogPages({ result, createPage }) {
+  result.data.allContentfulBlog.edges.forEach(({ node }) => {
+    createPage({
+      path: `blog/${node.slug}`,
+      component: path.resolve(`./src/pages/blog.js`),
+      context: {
+        node: node,
+      },
+    });
+  });
+}
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  const { createPage } = actions;
+
+  const bookDetailsResult = await graphql(QUERIES.BOOK_DETAILS);
+  const bookListResult = await graphql(QUERIES.BOOK_LIST);
+  const websiteListResult = await graphql(QUERIES.WEBSITE_LIST);
+  const blogResult = await graphql(QUERIES.BLOG);
+
+  if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
+    reporter.panicOnBuild(`Error while running GraphQL query.`);
+    return;
+  }
+
+  createBookListPages({ result: bookListResult, createPage });
+  createBookDetailPages({ result: bookDetailsResult, createPage });
+  createWebsitesPage({ result: websiteListResult, createPage });
+  createBlogPages({ resultL: blogResult, createPage });
+};

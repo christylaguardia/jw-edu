@@ -1,7 +1,19 @@
 {
-  "endOfLine": "lf",
-  "semi": false,
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "printWidth": 120,
+  "semi": true,
   "singleQuote": false,
+  "useTabs": false,
   "tabWidth": 2,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "overrides": [
+    {
+      "files": "*.scss",
+      "options": {
+        "tabWidth": 4
+      }
+    }
+  ]
 }
