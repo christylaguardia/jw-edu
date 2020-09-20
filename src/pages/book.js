@@ -17,7 +17,7 @@ const Book = ({ pageContext }) => {
     // averageRating,
     // ratingsCount,
   } = volumeInfo;
-  const [year] = publishedDate.split("-");
+  // const [year] = publishedDate.split("-");
 
   // viewer.load("ISBN:0738531367");
 
@@ -66,7 +66,7 @@ const Book = ({ pageContext }) => {
             <h1 className="title">{title}</h1>
             {subtitle && <h2 className="subtitle">{subtitle}</h2>}
             <p className="is-size-4">By {authors.join(", ")}</p>
-            {year && <p>Published {year}</p>}
+            {/* {year && <p>Published {year}</p>} */}
             <div dangerouslySetInnerHTML={{ __html: description }} />
           </div>
         </div>
