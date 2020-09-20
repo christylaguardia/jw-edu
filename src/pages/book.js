@@ -5,7 +5,6 @@ import { format, compareAsc } from "date-fns";
 import withPageLayout from "../components/Layout/withPageLayout";
 
 const Book = ({ pageContext }) => {
-  console.log({ pageContext });
   const { volumeInfo, accessInfo } = pageContext.node;
   const {
     title,
@@ -14,9 +13,9 @@ const Book = ({ pageContext }) => {
     description,
     imageLinks,
     publishedDate,
-    pageCount,
-    averageRating,
-    ratingsCount,
+    // pageCount,
+    // averageRating,
+    // ratingsCount,
   } = volumeInfo;
   const [year] = publishedDate.split("-");
 
@@ -52,7 +51,7 @@ const Book = ({ pageContext }) => {
               {/* {averageRating && (
                 <p>
                   {Array.from({ length: 5 }).forEach((_, i) => (
-                    <span className={`icon${averageRating <= i ? "has-text-warning" : ""}`}>
+                    <span className="icon has-text-warning">
                       <i className="fas fa-star"></i>
                     </span>
                   ))}

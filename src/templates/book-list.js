@@ -7,7 +7,7 @@ import Pagination from "../components/Pagination";
 
 const BookList = ({ data, pageContext }) => {
   if (!data || !pageContext) return <p>Loading...</p>; // TODO:
-  console.log({ pageContext });
+
   const { currentPage, limit, numPages, skip } = pageContext;
   const books = data.allBookDetails.edges;
 
