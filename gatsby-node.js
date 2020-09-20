@@ -78,20 +78,21 @@ const QUERIES = {
   BLOG: `
   {
     allContentfulBlog(limit: 1000, filter: { hide: { ne: true } }) {
-      edges {
-        node {
-          id
-          slug
-          title
-          markdown {
-            childMarkdownRemark {
-              html
+        edges {
+          node {
+            id
+            slug
+            title
+            date
+            markdown {
+              childMarkdownRemark {
+                html
+              }
             }
           }
         }
       }
     }
-  }
   `,
 };
 
@@ -167,10 +168,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const bookDetailsResult = await graphql(QUERIES.BOOK_DETAILS);
   const bookListResult = await graphql(QUERIES.BOOK_LIST);
   const websiteListResult = await graphql(QUERIES.WEBSITE_LIST);
-  // const blogResult = await graphql(QUERIES.BLOG);
+  const blogResult = await graphql(QUERIES.BLOG);
 
-  if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors) {
-    // || blogResult.errors) {
+  if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
@@ -178,5 +178,5 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   createBookListPages({ result: bookListResult, createPage });
   createBookDetailPages({ result: bookDetailsResult, createPage });
   createWebsitesPage({ result: websiteListResult, createPage });
-  // createBlogPages({ resultL: blogResult, createPage });
+  createBlogPages({ result: blogResult, createPage });
 };
