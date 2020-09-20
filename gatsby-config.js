@@ -36,7 +36,7 @@ module.exports = {
     {
       resolve: `gatsby-source-firebase`,
       options: {
-        credential: require("./firebase-key.json"), // TODO: move to env
+        credential: JSON.parse(process.env.FIREBASE_CREDENTIAL),
         databaseURL: "https://cult-education.firebaseio.com",
         types: [
           {
