@@ -73,3 +73,6 @@ yarn-error.log
 data/import
 data/source
 data/google-books-api/files
+
+# Firebase keys
+firebase-key.json
