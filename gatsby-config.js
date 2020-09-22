@@ -33,11 +33,29 @@ module.exports = {
         plugins: [],
       },
     },
+    // NOTE: this is not an official plugin
+    /**
+     * This is not an "official" plugin
+     * Docs say to pass the json file to `credential`, but it can also accept an object
+     * See https://firebase.google.com/docs/reference/admin/node/admin.credential#cert
+     * See https://github.com/ryanflorence/gatsby-source-firebase/blob/cc2a682dd217ef32be89717306d23d6c19dafa7b/gatsby-node.js#L12
+     */
     {
       resolve: `gatsby-source-firebase`,
       options: {
-        credential: require("./firebase-key.json"),
-        databaseURL: "https://cult-education.firebaseio.com",
+        credential: {
+          type: process.env.GATSBY_FIREBASE_TYPE,
+          project_id: `${process.env.GATSBY_FIREBASE_PROJECT_ID}`,
+          private_key_id: process.env.GATSBY_FIREBASE_PRIVATE_KEY_ID,
+          private_key: process.env.GATSBY_FIREBASE_PRIVATE_KEY,
+          client_email: process.env.GATSBY_FIREBASE_CLIENT_EMAIL,
+          client_id: process.env.GATSBY_FIREBASE_CLIENT_ID,
+          auth_uri: process.env.GATSBY_FIREBASE_AUTH_URI,
+          token_uri: process.env.GATSBY_FIREBASE_TOKEN_URI,
+          auth_provider_x509_cert_url: process.env.GATSBY_FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+          client_x509_cert_url: process.env.GATSBY_FIREBASE_CLIENT_X509_CERT_URL,
+        },
+        databaseURL: process.env.GATSBY_FIREBASE_DATABASE_URL,
         types: [
           {
             type: "BookDetails",
