@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { graphql } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faThLarge, faTable } from "@fortawesome/free-solid-svg-icons";
-import css from "classNames";
+import css from "classnames";
 
 import withPageLayout from "../components/Layout/withPageLayout";
 import BookSearch from "../components/BookSearch";
