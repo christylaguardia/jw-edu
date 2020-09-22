@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, StaticQuery, graphql } from "gatsby";
 
-const LevelItem = ({ heading, path, title }) => (
+export const LevelItem = ({ heading, path, title }) => (
   <Link to={path}>
     <div className="level-item has-text-centered">
       <div>
@@ -12,7 +12,7 @@ const LevelItem = ({ heading, path, title }) => (
   </Link>
 );
 
-const LevelItems = ({ data }) => (
+export const LevelItems = ({ data }) => (
   <div className="container">
     <div className="section">
       <nav className="level">
@@ -24,9 +24,9 @@ const LevelItems = ({ data }) => (
   </div>
 );
 
-const Totals = () => <StaticQuery query={query} render={data => <LevelItems data={data} />} />;
+export const Totals = () => <StaticQuery query={query} render={data => <LevelItems data={data} />} />;
 
-const query = graphql`
+export const query = graphql`
   {
     allMongodbGooglebooksapiVolumes {
       pageInfo {
@@ -45,5 +45,3 @@ const query = graphql`
     }
   }
 `;
-
-export default Totals;

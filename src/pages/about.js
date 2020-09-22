@@ -1,6 +1,8 @@
 import React from "react";
 import withPageLayout from "../components/Layout/withPageLayout";
 
+import Totals from "../components/Totals";
+
 const About = () => (
   <div className="content">
     <p className="">
@@ -8,6 +10,8 @@ const About = () => (
       links to books, blogs, articles, websites and much more.
     </p>
     <p className="">This site does not include searching literature published by the Jehovah's Witnesses.</p>
+
+    <Totals />
   </div>
 );
 

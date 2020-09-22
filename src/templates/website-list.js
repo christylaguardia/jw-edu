@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import withPageLayout from "../components/Layout/withPageLayout";
+import WebsiteSearch from "../components/WebsiteSearch";
 import WebsiteCard from "../components/WebsiteCard";
 import Pagination from "../components/Pagination";
 
@@ -17,14 +18,15 @@ const Websites = ({ data, pageContext }) => {
 
   return (
     <>
-      <Pagination basePath="websites" numPages={numPages} currentPage={currentPage} />
+      <WebsiteSearch />
       <div className="columns is-multiline is-mobile">
         {websites.map(({ node }) => (
-          <div key={node.id} className="column is-full">
+          <div key={node.id} className="column is-full-mobile is-full-tablet is-half-desktop">
             <WebsiteCard {...node} />
           </div>
         ))}
       </div>
+      <Pagination basePath="websites" numPages={numPages} currentPage={currentPage} />
     </>
   );
 };

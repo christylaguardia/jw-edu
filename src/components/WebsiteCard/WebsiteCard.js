@@ -1,26 +1,45 @@
 import React from "react";
 
-export const WebsiteCard = ({ name, url, tags }) => (
-  <div className="card" style={{ height: "100%" }}>
-    <div className="card-content">
-      <div className="media">
-        <div className="media-content">
-          <p className="title is-5">{name}</p>
-          <a target="_blank" rel="noreferrer" href={url}>
-            GO
-          </a>
+export const WebsiteCard = ({ name, url, tags }) => {
+  const handleClick = () => window.open(url, "_blank");
+
+  return (
+    <div className="box" onClick={handleClick}>
+      <div className="columns is-mobile">
+        <div className="column is-narrow">
+          <figure className="image is-128x128">
+            <img src="https://bulma.io/images/placeholders/128x128.png" />
+          </figure>
+        </div>
+        <div className="column">
+          <div className="content">
+            <p>
+              <strong>{name}</strong>
+              <br />
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor
+              vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+            </p>
+          </div>
+
+          <div className="columns is-mobile">
+            <div className="column">
+              <div className="tags">
+                {tags &&
+                  tags.map(({ id, tag }) => (
+                    <span key={id} className="tag is-small">
+                      {tag}
+                    </span>
+                  ))}
+              </div>
+            </div>
+            <div className="column is-narrow is-right">
+              <a className="" target="_blank" rel="noreferrer" href={url}>
+                Visit Website
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div className="card-footer">
-      <div className="tags are-medium">
-        {tags &&
-          tags.map(({ id, tag }) => (
-            <span key={id} className="tag">
-              {tag}
-            </span>
-          ))}
-      </div>
-    </div>
-  </div>
-);
+  );
+};

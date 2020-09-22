@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import withPageLayout from "../components/Layout/withPageLayout";
+import BookSearch from "../components/BookSearch";
 import BookCard from "../components/BookCard";
 import Pagination from "../components/Pagination";
 
@@ -15,14 +16,15 @@ const BookList = ({ data, pageContext }) => {
 
   return (
     <>
-      <Pagination basePath="books" currentPage={currentPage} limit={limit} numPages={numPages} skip={skip} />
+      <BookSearch />
       <div className="columns is-multiline is-mobile">
         {books.map(({ node }) => (
-          <div key={node.id} className="column is-full-mobile is-one-third-tablet is-one-quarter-desktop">
+          <div key={node.id} className="column is-full-mobile is-one-half-tablet is-one-third-desktop">
             <BookCard {...node} />
           </div>
         ))}
       </div>
+      <Pagination basePath="books" currentPage={currentPage} limit={limit} numPages={numPages} skip={skip} />
     </>
   );
 };
@@ -43,9 +45,23 @@ export const bookListQuery = graphql`
             title
             subtitle
             authors
+            description
             imageLinks {
+              smallThumbnail
               thumbnail
+              small
+              medium
+              large
+              extraLarge
             }
+            publishedDate
+            pageCount
+            averageRating
+            ratingsCount
+          }
+          accessInfo {
+            webReaderLink
+            embeddable
           }
         }
       }

@@ -16,7 +16,6 @@ const Blog = props => {
       {/* <h1 className="title">{title}</h1> */}
       {/* <p className="subtitle">{date}</p> */}
       {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
-      {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
     </div>
   );
 };

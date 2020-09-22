@@ -23,6 +23,14 @@ const Book = ({ pageContext }) => {
 
   // viewer.load("ISBN:0738531367");
 
+  const imageSrc =
+    imageLinks?.large ||
+    imageLinks?.medium ||
+    imageLinks?.small ||
+    imageLinks?.thumbnail ||
+    imageLinks?.smallThumbnail ||
+    "https://bulma.io/images/placeholders/300x300.png";
+
   return (
     <>
       {/* <Helmet title="foo bar" defer={false}>
@@ -34,7 +42,7 @@ const Book = ({ pageContext }) => {
         {imageLinks && (
           <div className="column is-one-third is-full-mobile">
             <figure className="image image is-2by3">
-              <img src={imageLinks.small} alt={title} />
+              <img src={imageSrc} alt={title} />
             </figure>
 
             <div className="container" style={{ marginTop: "1rem" }}>

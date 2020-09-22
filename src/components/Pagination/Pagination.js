@@ -14,7 +14,7 @@ export const Pagination = ({ basePath, currentPage, numPages }) => {
 
   return (
     <>
-      <nav className="pagination is-small is-centered" role="navigation" aria-label="pagination">
+      <nav className="pagination is-centered" role="navigation" aria-label="pagination">
         {isFirst ? (
           <span className="pagination-previous">Previous</span>
         ) : (

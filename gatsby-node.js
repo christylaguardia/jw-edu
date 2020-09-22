@@ -14,6 +14,7 @@ const QUERIES = {
           volumeInfo {
             title
             authors
+            description
             publishedDate
             imageLinks {
               thumbnail
@@ -37,8 +38,12 @@ const QUERIES = {
             authors
             description
             imageLinks {
-              small
+              smallThumbnail
               thumbnail
+              small
+              medium
+              large
+              extraLarge
             }
             publishedDate
             pageCount
@@ -99,7 +104,7 @@ const QUERIES = {
 function createBookListPages({ result, createPage }) {
   const books = result.data.allMongodbGooglebooksapiVolumes.edges;
   const booksTotal = books.length;
-  const booksPerPage = 10;
+  const booksPerPage = 12;
   const numPages = Math.ceil(booksTotal / booksPerPage);
 
   Array.from({ length: numPages }).forEach((_, i) => {
@@ -170,8 +175,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const websiteListResult = await graphql(QUERIES.WEBSITE_LIST);
   const blogResult = await graphql(QUERIES.BLOG);
 
-  // if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
-  if (websiteListResult.errors || blogResult.errors) {
+  if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }

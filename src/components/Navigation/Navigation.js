@@ -7,35 +7,37 @@ export const Navigation = () => {
   const isActiveClassName = isActive ? "is-active" : "";
 
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
-      <div className="container">
-        <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
-            {SITE_NAME.toUpperCase()}
-          </Link>
-          <div className={`navbar-burger burger ${isActiveClassName}`} onClick={() => setIsActive(!isActive)}>
-            <span></span>
-            <span></span>
-            <span></span>
+    <>
+      <nav className="navbar" role="navigation" aria-label="main navigation">
+        <div className="container">
+          <div className="navbar-brand">
+            <Link className="navbar-item" to="/">
+              {SITE_NAME.toUpperCase()}
+            </Link>
+            <div className={`navbar-burger burger ${isActiveClassName}`} onClick={() => setIsActive(!isActive)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
-        </div>
 
-        <div id="hamburger-menu" className={`navbar-menu ${isActiveClassName}`}>
-          <div className="navbar-end">
-            {Object.values(RESOURCE_TYPES).map(resource => (
-              <Link key={resource} className="navbar-item is-uppercase" to={`/${resource}`}>
-                {resource}
+          <div id="hamburger-menu" className={`navbar-menu ${isActiveClassName}`}>
+            <div className="navbar-end">
+              {Object.values(RESOURCE_TYPES).map(resource => (
+                <Link key={resource} className="navbar-item is-uppercase" to={`/${resource}`}>
+                  {resource}
+                </Link>
+              ))}
+              <Link className="navbar-item is-uppercase" to="/about">
+                About
               </Link>
-            ))}
-            <Link className="navbar-item is-uppercase" to="/about">
-              About
-            </Link>
-            <Link className="navbar-item is-uppercase" to="/contact">
-              Contact
-            </Link>
+              <Link className="navbar-item is-uppercase" to="/contact">
+                Contact
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
