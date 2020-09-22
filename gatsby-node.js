@@ -3,7 +3,7 @@ const path = require("path");
 const QUERIES = {
   BOOK_LIST: `
   {
-    allBookDetails(
+    allMongodbGooglebooksapiVolumes(
       limit: 1000,
       sort: {fields: volumeInfo___publishedDate, order: DESC},
       filter: {volumeInfo: {publishedDate: {ne: null}}}
@@ -26,7 +26,7 @@ const QUERIES = {
   `,
   BOOK_DETAILS: `
   {
-    allBookDetails(limit: 1000) {
+    allMongodbGooglebooksapiVolumes(limit: 1000) {
       edges {
         node {
           id
@@ -97,7 +97,7 @@ const QUERIES = {
 };
 
 function createBookListPages({ result, createPage }) {
-  const books = result.data.allBookDetails.edges;
+  const books = result.data.allMongodbGooglebooksapiVolumes.edges;
   const booksTotal = books.length;
   const booksPerPage = 10;
   const numPages = Math.ceil(booksTotal / booksPerPage);
@@ -118,7 +118,7 @@ function createBookListPages({ result, createPage }) {
 }
 
 function createBookDetailPages({ result, createPage }) {
-  result.data.allBookDetails.edges.forEach(({ node }) => {
+  result.data.allMongodbGooglebooksapiVolumes.edges.forEach(({ node }) => {
     createPage({
       path: `book/${node.id}`,
       component: path.resolve(`./src/pages/book.js`),
@@ -170,7 +170,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const websiteListResult = await graphql(QUERIES.WEBSITE_LIST);
   const blogResult = await graphql(QUERIES.BLOG);
 
-  if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
+  // if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
+  if (websiteListResult.errors || blogResult.errors) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }

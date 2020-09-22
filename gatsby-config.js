@@ -33,48 +33,17 @@ module.exports = {
         plugins: [],
       },
     },
-    // NOTE: this is not an official plugin
-    /**
-     * This is not an "official" plugin
-     * Docs say to pass the json file to `credential`, but it can also accept an object
-     * See https://firebase.google.com/docs/reference/admin/node/admin.credential#cert
-     * See https://github.com/ryanflorence/gatsby-source-firebase/blob/cc2a682dd217ef32be89717306d23d6c19dafa7b/gatsby-node.js#L12
-     */
     {
-      resolve: `gatsby-source-firebase`,
+      resolve: "gatsby-source-mongodb",
       options: {
-        credential: {
-          type: process.env.GATSBY_FIREBASE_TYPE,
-          project_id: `${process.env.GATSBY_FIREBASE_PROJECT_ID}`,
-          private_key_id: process.env.GATSBY_FIREBASE_PRIVATE_KEY_ID,
-          private_key: process.env.GATSBY_FIREBASE_PRIVATE_KEY,
-          client_email: process.env.GATSBY_FIREBASE_CLIENT_EMAIL,
-          client_id: process.env.GATSBY_FIREBASE_CLIENT_ID,
-          auth_uri: process.env.GATSBY_FIREBASE_AUTH_URI,
-          token_uri: process.env.GATSBY_FIREBASE_TOKEN_URI,
-          auth_provider_x509_cert_url: process.env.GATSBY_FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
-          client_x509_cert_url: process.env.GATSBY_FIREBASE_CLIENT_X509_CERT_URL,
-        },
-        databaseURL: process.env.GATSBY_FIREBASE_DATABASE_URL,
-        types: [
-          {
-            type: "BookDetails",
-            path: "book-details",
-          },
-        ],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-firebase",
-      options: {
-        credentials: {
-          apiKey: `${process.env.GATSBY_FIREBASE_API_KEY}`,
-          authDomain: `${process.env.GATSBY_FIREBASE_AUTH_DOMAIN}`,
-          databaseURL: `${process.env.GATSBY_FIREBASE_DATABASE_URL}`,
-          projectId: `${process.env.GATSBY_FIREBASE_PROJECT_ID}`,
-          storageBucket: `${process.env.GATSBY_FIREBASE_STORAGE_BUCKET}`,
-          messagingSenderId: `${process.env.GATSBY_FIREBASE_MESSAGING_SENDER_ID}`,
-          appId: `${process.env.GATSBY_FIREBASE_APP_ID}`,
+        dbName: process.env.DB_NAME,
+        collection: process.env.DB_COLLECTION,
+        connectionString: process.env.DB_CONNECTION_STRING,
+        extraParams: {
+          // replicaSet: 'Main-shard-0',
+          ssl: true,
+          authSource: "admin",
+          retryWrites: true,
         },
       },
     },

@@ -16,7 +16,7 @@ const LevelItems = ({ data }) => (
   <div className="container">
     <div className="section">
       <nav className="level">
-        <LevelItem heading="Books" path="/books" title={data.allBookDetails.pageInfo.itemCount} />
+        <LevelItem heading="Books" path="/books" title={data.allMongodbGooglebooksapiVolumes.pageInfo.itemCount} />
         <LevelItem heading="Websites" path="/websites" title={data.allContentfulWebsite.pageInfo.itemCount} />
         <LevelItem heading="Tags" path="/tags" title={data.allContentfulTag.pageInfo.itemCount} />
       </nav>
@@ -28,7 +28,7 @@ const Totals = () => <StaticQuery query={query} render={data => <LevelItems data
 
 const query = graphql`
   {
-    allBookDetails {
+    allMongodbGooglebooksapiVolumes {
       pageInfo {
         itemCount
       }

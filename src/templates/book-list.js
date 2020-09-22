@@ -9,7 +9,7 @@ const BookList = ({ data, pageContext }) => {
   if (!data || !pageContext) return <p>Loading...</p>; // TODO:
 
   const { currentPage, limit, numPages, skip } = pageContext;
-  const books = data.allBookDetails.edges;
+  const books = data.allMongodbGooglebooksapiVolumes.edges;
 
   if (!books || books.length === 0) return <p>No books found.</p>;
 
@@ -29,7 +29,7 @@ const BookList = ({ data, pageContext }) => {
 
 export const bookListQuery = graphql`
   query BookList($skip: Int!, $limit: Int!) {
-    allBookDetails(
+    allMongodbGooglebooksapiVolumes(
       limit: $limit
       skip: $skip
       sort: { fields: volumeInfo___publishedDate, order: DESC }

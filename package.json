@@ -20,9 +20,7 @@
     "bulma": "^0.8.2",
     "contentful-management": "^6.1.2",
     "dotenv": "^8.0.0",
-    "firebase": "^7.21.0",
     "gatsby": "^2.24.57",
-    "gatsby-plugin-firebase": "^0.2.0-beta.4",
     "gatsby-plugin-fontawesome-css": "^1.0.0",
     "gatsby-plugin-graphql-loader": "^1.0.2",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
@@ -30,6 +28,7 @@
     "gatsby-plugin-sass": "^2.3.13",
     "gatsby-plugin-transition-link": "^1.20.2",
     "gatsby-source-contentful": "^2.3.45",
+    "gatsby-source-mongodb": "^2.3.11",
     "gatsby-transformer-remark": "^2.8.35",
     "graphql-tag": "^2.11.0",
     "gsap": "^3.5.1",
@@ -38,7 +37,6 @@
     "query-string": "^6.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-firebase-hooks": "^2.2.0",
     "react-helmet": "^6.1.0",
     "sass": "^1.26.11",
     "sass-loader": "^10.0.2",
@@ -48,7 +46,6 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.14.0",
-    "gatsby-source-firebase": "^1.0.0",
     "node-sass": "^4.14.1",
     "prettier": "^1.17.1"
   },
