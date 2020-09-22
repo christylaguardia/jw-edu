@@ -1,27 +1,32 @@
 import React from "react";
 // import Helmet from "gatsby-plugin-react-helmet";
-import { format, compareAsc } from "date-fns";
+// import { format, compareAsc } from "date-fns";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import withPageLayout from "../components/Layout/withPageLayout";
 
 const Book = ({ pageContext }) => {
   if (!pageContext.node) return null;
 
-  const { volumeInfo, accessInfo } = pageContext.node;
+  const { volumeInfo, accessInfo, saleInfo } = pageContext.node;
   const {
     title,
     subtitle,
     authors,
+    categories,
     description,
+    industryIdentifiers,
     imageLinks,
     publishedDate,
-    // pageCount,
-    // averageRating,
-    // ratingsCount,
+    pageCount,
+    averageRating,
+    ratingsCount,
   } = volumeInfo;
-  // const [year] = publishedDate.split("-");
 
-  // viewer.load("ISBN:0738531367");
+  const identifiers =
+    industryIdentifiers && industryIdentifiers.map(({ type, identifier }) => `${type}: ${identifier}`).join(", ");
 
   const imageSrc =
     imageLinks?.large ||
@@ -46,28 +51,19 @@ const Book = ({ pageContext }) => {
             </figure>
 
             <div className="container" style={{ marginTop: "1rem" }}>
-              {accessInfo?.webReaderLink && (
-                <a
-                  className="button is-primary is-outlined"
-                  target="_blank"
-                  rel="noreferrer"
-                  href={accessInfo.webReaderLink}>
-                  Read
-                </a>
-              )}
-
-              {/* {accessInfo?.embeddable && } */}
-
-              {/* {averageRating && (
-                <p>
-                  {Array.from({ length: 5 }).forEach((_, i) => (
-                    <span className="icon has-text-warning">
-                      <i className="fas fa-star"></i>
-                    </span>
-                  ))}
-                  {ratingsCount && ` (${ratingsCount})`}
-                </p>
-              )} */}
+              <div className="buttons">
+                {accessInfo?.webReaderLink && (
+                  <a className="button is-dark" target="_blank" rel="noreferrer" href={accessInfo.webReaderLink}>
+                    Read
+                  </a>
+                )}
+                {/* TODO: what other saleability values/ */}
+                {saleInfo?.saleability === "FOR_SALE" && saleInfo?.buyLink && (
+                  <a className="button is-dark" target="_blank" rel="noreferrer" href={saleInfo.buyLink}>
+                    Buy from GooglePlay
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -76,8 +72,37 @@ const Book = ({ pageContext }) => {
             <h1 className="title">{title}</h1>
             {subtitle && <h2 className="subtitle">{subtitle}</h2>}
             <p className="is-size-4">By {authors.join(", ")}</p>
-            {/* {year && <p>Published {year}</p>} */}
-            <div dangerouslySetInnerHTML={{ __html: description }} />
+            <p className="is-size-4">{publishedDate}</p>
+
+            {description ? (
+              <div dangerouslySetInnerHTML={{ __html: description }} />
+            ) : (
+              <p>
+                <em>Description not available :(</em>
+              </p>
+            )}
+
+            <br />
+
+            {pageCount && <p>Page Count: {pageCount} </p>}
+            {identifiers && <p>{identifiers} </p>}
+            {averageRating !== undefined && (
+              <p>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <FontAwesomeIcon icon={faStar} size="1x" color={averageRating >= i ? "orange" : "gray"} />
+                ))}
+                {ratingsCount && ` (${ratingsCount})`}
+              </p>
+            )}
+
+            <div className="tags">
+              {categories &&
+                categories.map(category => (
+                  <span key={category} className="tag is-small">
+                    {category}
+                  </span>
+                ))}
+            </div>
           </div>
         </div>
       </div>

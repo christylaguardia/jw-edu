@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Link from "gatsby-plugin-transition-link/AniLink";
+
 import { SITE_NAME, RESOURCE_TYPES } from "../../constants";
 
 export const Navigation = () => {
@@ -8,8 +9,8 @@ export const Navigation = () => {
 
   return (
     <>
-      <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="container">
+      <nav className="navbar has-background-light" role="navigation" aria-label="main navigation">
+        <div className="container ">
           <div className="navbar-brand">
             <Link className="navbar-item" to="/">
               {SITE_NAME.toUpperCase()}

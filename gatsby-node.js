@@ -14,7 +14,7 @@ const QUERIES = {
           volumeInfo {
             title
             authors
-            description
+            categories
             publishedDate
             imageLinks {
               thumbnail
@@ -36,6 +36,7 @@ const QUERIES = {
             title
             subtitle
             authors
+            categories
             description
             imageLinks {
               smallThumbnail
@@ -45,6 +46,10 @@ const QUERIES = {
               large
               extraLarge
             }
+            industryIdentifiers {
+              identifier
+              type
+            }
             publishedDate
             pageCount
             averageRating
@@ -53,6 +58,10 @@ const QUERIES = {
           accessInfo {
             webReaderLink
             embeddable
+          }
+          saleInfo {
+            saleability
+            buyLink
           }
         }
       }

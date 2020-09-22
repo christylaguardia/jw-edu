@@ -44,11 +44,6 @@ export const Pagination = ({ basePath, currentPage, numPages }) => {
           })}
         </ul>
       </nav>
-      {/* <div className="content">
-        <p>
-          Displaying {currentPage * limit} - {currentPage + (limit - 1)} of {total} results
-        </p>
-      </div> */}
     </>
   );
 };

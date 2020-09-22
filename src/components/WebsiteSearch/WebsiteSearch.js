@@ -3,7 +3,7 @@ import React from "react";
 const tags = ["Blog", "Non-Profit", "Discussion Forum", "Legal", "Blood"];
 
 export const WebsiteSearch = () => {
-  const handleClick = () => console.log("perform search...");
+  // const handleClick = () => console.log("perform search...");
 
   return (
     <div className="container" style={{ marginBottom: "2rem" }}>
