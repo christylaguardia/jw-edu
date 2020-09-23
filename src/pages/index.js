@@ -5,7 +5,7 @@ import "typeface-lato";
 import "../scss/styles.scss";
 
 import HomeHero from "../components/HomeHero";
-import Footer from "../components/Layout/Footer";
+import { Footer } from "../components/Layout/Footer";
 
 export default () => (
   <>

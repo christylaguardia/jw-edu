@@ -1,11 +1,10 @@
 import React from "react";
 
-import BookCard from "./BookCard";
-import BookListItem from "./BookListItem";
-import BooksTable from "./BooksTable";
-import BooksViewSelector from "./BooksViewSelector";
-
 import { VIEW } from "../../constants";
+import { BookCard } from "./BookCard";
+import { BookListItem } from "./BookListItem";
+import { BooksTable } from "./BooksTable";
+import { BooksViewSelector } from "./BooksViewSelector";
 
 export const BooksView = ({ start, end, total, currentView, setCurrentView, books }) => {
   const renderView = () => {

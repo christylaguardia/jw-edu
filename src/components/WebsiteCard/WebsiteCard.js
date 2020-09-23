@@ -1,14 +1,14 @@
 import React from "react";
 
 export const WebsiteCard = ({ name, url, tags }) => {
-  const handleClick = () => window.open(url, "_blank");
+  // const handleClick = () => window.open(url, "_blank");
 
   return (
-    <div className="box" onClick={handleClick}>
+    <div className="box">
       <div className="columns is-mobile">
         <div className="column is-narrow">
           <figure className="image is-128x128">
-            <img src="https://bulma.io/images/placeholders/128x128.png" />
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt={name} />
           </figure>
         </div>
         <div className="column">

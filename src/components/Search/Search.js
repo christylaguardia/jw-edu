@@ -24,7 +24,7 @@ export const Search = () => {
           <div className="field-body">
             <p className="control">
               <span className="select is-fullwidth">
-                <select name="resource" value={resource} onChange={handleResourceChange}>
+                <select name="resource" value={resource} onBlur={handleResourceChange}>
                   {Object.values(RESOURCE_TYPE).map(resource => (
                     <option value={resource}>{`${resource.charAt(0).toUpperCase()}${resource.slice(1)}`}</option>
                   ))}
@@ -38,7 +38,7 @@ export const Search = () => {
                 type="text"
                 placeholder="Enter a search..."
                 value={keyword}
-                onChange={handleKeywordChange}
+                onBlur={handleKeywordChange}
               />
             </div>
             <div className="control">

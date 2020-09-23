@@ -1,3 +1,5 @@
+/* WIP */
+
 import React from "react";
 
 const tags = ["Blog", "Non-Profit", "Discussion Forum", "Legal", "Blood"];
@@ -13,9 +15,9 @@ export const WebsiteSearch = () => {
             <p className="control is-expanded">
               <input className="input" type="text" placeholder="Find a website" />
             </p>
-            <p className="control">
+            {/* <p className="control">
               <a className="button is-info">Search</a>
-            </p>
+            </p> */}
           </div>
         </div>
 
@@ -36,10 +38,11 @@ export const WebsiteSearch = () => {
         {tags &&
           tags.sort().map(tag => (
             <div key={tag} className="control">
-              <div className="tags has-addons">
+              <span className="tag is-medium">{tag}</span>
+              {/* <div className="tags has-addons">
                 <a className="tag is-medium is-link">{tag}</a>
                 <a className="tag is-medium is-delete"></a>
-              </div>
+              </div> */}
             </div>
           ))}
       </div>

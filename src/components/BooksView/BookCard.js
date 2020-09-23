@@ -1,21 +1,18 @@
 import React from "react";
-import { navigate } from "gatsby";
+import Link from "gatsby-plugin-transition-link/AniLink";
 
 export const BookCard = ({ id, volumeInfo }) => {
-  const { title, authors, categories, publishedDate, imageLinks } = volumeInfo;
-  const path = `/book/${id}`;
+  const { title, authors, publishedDate, imageLinks } = volumeInfo; // TODO: categories
   const publishedYear = publishedDate ? publishedDate.substring(0, 4) : null;
   const imageSrc =
     imageLinks?.thumbnail || imageLinks?.smallThumbnail || "https://bulma.io/images/placeholders/128x128.png";
 
-  const handleClick = () => navigate(path);
-
   return (
-    <div className="box" style={{ height: "100%" }} onClick={handleClick}>
+    <div className="box" style={{ height: "100%" }}>
       <div className="columns is-mobile">
         <div className="column is-narrow">
           <figure className="image" height={128}>
-            <img src={imageSrc} />
+            <img src={imageSrc} alt={`${title}} by ${authors.join(" and ")}.`} />
           </figure>
         </div>
         <div className="column">
@@ -31,6 +28,10 @@ export const BookCard = ({ id, volumeInfo }) => {
             dangerouslySetInnerHTML={{ __html: description }}
           /> */}
           {/* Tags? */}
+
+          <Link className="button is-link" to={`/book/${id}`}>
+            Read More
+          </Link>
         </div>
       </div>
     </div>

@@ -1,9 +1,8 @@
 import React from "react";
 
-import Navigation from "../Layout/Navigation";
-import Search from "../Search";
-
 import { SITE_NAME, SITE_DESC } from "../../constants";
+import { Navigation } from "../Layout/Navigation";
+import Search from "../Search";
 
 // Temp
 const Banner = () => (
@@ -15,7 +14,7 @@ const Banner = () => (
   </div>
 );
 
-export default () => (
+export const HomeHero = () => (
   <section
     className="hero is-fullheight"
     style={{
@@ -36,3 +35,5 @@ export default () => (
     </div>
   </section>
 );
+
+export default HomeHero;

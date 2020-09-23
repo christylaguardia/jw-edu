@@ -6,7 +6,7 @@ export const RESOURCE_TYPE = Object.freeze({
   WEBSITES: "websites",
 });
 
-const VIEW = Object.freeze({
+export const VIEW = Object.freeze({
   CARD: "card",
   LIST: "list",
   TABLE: "table",

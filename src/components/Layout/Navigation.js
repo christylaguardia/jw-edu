@@ -7,6 +7,8 @@ export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
   const isActiveClassName = isActive ? "is-active" : "";
 
+  const handleNavChange = () => setIsActive(!isActive);
+
   return (
     <>
       <nav className="navbar has-background-light" role="navigation" aria-label="main navigation">
@@ -15,7 +17,12 @@ export const Navigation = () => {
             <Link className="navbar-item" to="/">
               {SITE_NAME.toUpperCase()}
             </Link>
-            <div className={`navbar-burger burger ${isActiveClassName}`} onClick={() => setIsActive(!isActive)}>
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={handleNavChange}
+              onKeyPress={handleNavChange}
+              className={`navbar-burger burger ${isActiveClassName}`}>
               <span></span>
               <span></span>
               <span></span>
