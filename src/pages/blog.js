@@ -1,5 +1,5 @@
 import React from "react";
-import withPageLayout from "../components/Layout/withPageLayout";
+import withPageLayout from "../hocs/withPageLayout";
 
 // TODO: pageContext is not working
 const Blog = props => {

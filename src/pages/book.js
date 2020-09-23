@@ -5,7 +5,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-import withPageLayout from "../components/Layout/withPageLayout";
+import withPageLayout from "../hocs/withPageLayout";
 
 const Book = ({ pageContext }) => {
   if (!pageContext.node) return null;

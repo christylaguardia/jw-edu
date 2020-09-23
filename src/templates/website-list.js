@@ -1,13 +1,14 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import withPageLayout from "../components/Layout/withPageLayout";
+import withPageLayout from "../hocs/withPageLayout";
 import WebsiteSearch from "../components/WebsiteSearch";
 import WebsiteCard from "../components/WebsiteCard";
 import Pagination from "../components/Pagination";
 
 const Websites = ({ data, pageContext }) => {
-  if (!data || !pageContext) return <p>Loading...</p>; // TODO:
+  // TODO: does this ever happen?
+  if (!data || !pageContext) return <p>Loading...</p>;
 
   const { currentPage, numPages } = pageContext;
   const websites = data.allContentfulWebsite.edges;
