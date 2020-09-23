@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "gatsby-plugin-transition-link/AniLink";
 
-import { SITE_NAME, RESOURCE_TYPES } from "../../constants";
+import { SITE_NAME, RESOURCE_TYPE } from "../../constants";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
@@ -24,7 +24,7 @@ export const Navigation = () => {
 
           <div id="hamburger-menu" className={`navbar-menu ${isActiveClassName}`}>
             <div className="navbar-end">
-              {Object.values(RESOURCE_TYPES).map(resource => (
+              {Object.values(RESOURCE_TYPE).map(resource => (
                 <Link key={resource} className="navbar-item is-uppercase" to={`/${resource}`}>
                   {resource}
                 </Link>

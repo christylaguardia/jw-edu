@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "gatsby-plugin-transition-link/AniLink";
 
-import { SITE_NAME, RESOURCE_TYPES } from "../../constants";
+import { SITE_NAME, RESOURCE_TYPE } from "../../constants";
 
 /**
  * TODO: Find more content
@@ -19,7 +19,7 @@ export const Footer = ({ children }) => (
       <div className="content has-text-centered">
         <div className="columns">
           <div className="column has-text-left">
-            {Object.values(RESOURCE_TYPES).map(resource => (
+            {Object.values(RESOURCE_TYPE).map(resource => (
               <Link key={resource} className="navbar-item is-uppercase" to={`/${resource}`}>
                 {resource}
               </Link>

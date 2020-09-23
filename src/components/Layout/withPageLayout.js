@@ -1,7 +1,7 @@
 import React from "react";
 
-import Navigation from "../Navigation";
-import Footer from "../Footer";
+import Navigation from "./Navigation";
+import Footer from "./Footer";
 
 function withPageLayout(WrappedComponent, title, subtitle) {
   return class extends React.Component {

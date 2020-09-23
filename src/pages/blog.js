@@ -1,21 +1,18 @@
 import React from "react";
-import withPageLayout from "../hocs/withPageLayout";
+import withPageLayout from "../components/Layout/withPageLayout";
 
-// TODO: pageContext is not working
-const Blog = props => {
-  // console.log(props);
-  // const { pageContext } = props;
+const Blog = ({ data, pageContext }) => {
+  // TODO: does this ever happen?
+  if (!data || !pageContext) return <p>Loading...</p>;
 
-  // if (!pageContext) return <p>Loading...</p>; // TODO:
-
-  // const { title } = pageContext.node;
+  // if (!pageContext.node) return null;
+  const { title, date, html } = pageContext.node;
 
   return (
     <div className="content">
-      <h1 className="title">Blog</h1>
-      {/* <h1 className="title">{title}</h1> */}
-      {/* <p className="subtitle">{date}</p> */}
-      {/* <div dangerouslySetInnerHTML={{ __html: html }} /> */}
+      <h1 className="title">{title}</h1>
+      <p className="subtitle">{date}</p>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   );
 };

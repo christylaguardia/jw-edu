@@ -1,7 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 
-import withPageLayout from "../hocs/withPageLayout";
+import withPageLayout from "../components/Layout/withPageLayout";
 import WebsiteSearch from "../components/WebsiteSearch";
 import WebsiteCard from "../components/WebsiteCard";
 import Pagination from "../components/Pagination";

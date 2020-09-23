@@ -1,15 +1,16 @@
-import React from "react"
-import Navigation from "../components/Navigation"
+import React from "react";
 
-export default () => (
-  <>
-    <Navigation />
-    <section className="hero is-warning">
-      <div className="hero-body">
-        <div className="container">
-          <p className="title">Error!</p>
-        </div>
+import withPageLayout from "../components/Layout/withPageLayout";
+
+// TODO: better error message and page design
+export const ErrorPage = () => (
+  <section className="hero is-warning">
+    <div className="hero-body">
+      <div className="container">
+        <p className="title">Error!</p>
       </div>
-    </section>
-  </>
-)
+    </div>
+  </section>
+);
+
+export default withPageLayout(ErrorPage);

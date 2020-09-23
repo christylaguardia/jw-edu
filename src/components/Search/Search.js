@@ -3,10 +3,10 @@ import { navigate } from "gatsby";
 import Link from "gatsby-plugin-transition-link/AniLink";
 import { encode } from "qss";
 
-import { RESOURCE_TYPES } from "../../constants";
+import { RESOURCE_TYPE } from "../../constants";
 
 export const Search = () => {
-  const [resource, setResource] = useState(RESOURCE_TYPES.BOOKS);
+  const [resource, setResource] = useState(RESOURCE_TYPE.BOOKS);
   const [keyword, setKeyword] = useState("");
 
   const handleResourceChange = event => setResource(event.target.value);
@@ -25,7 +25,7 @@ export const Search = () => {
             <p className="control">
               <span className="select is-fullwidth">
                 <select name="resource" value={resource} onChange={handleResourceChange}>
-                  {Object.values(RESOURCE_TYPES).map(resource => (
+                  {Object.values(RESOURCE_TYPE).map(resource => (
                     <option value={resource}>{`${resource.charAt(0).toUpperCase()}${resource.slice(1)}`}</option>
                   ))}
                 </select>

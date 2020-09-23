@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { graphql } from "gatsby";
 
-import withPageLayout from "../hocs/withPageLayout";
-import BookSearch from "../components/BookSearch";
-
+import withPageLayout from "../components/Layout/withPageLayout";
 import Pagination from "../components/Pagination";
+import BookSearch from "../components/BookSearch";
 import { BooksView } from "../components/BooksView/BooksView";
+
+import { VIEW } from "../constants";
 
 const BookList = ({ data, pageContext }) => {
   const [currentView, setCurrentView] = useState(VIEW.CARD);
@@ -24,23 +25,14 @@ const BookList = ({ data, pageContext }) => {
   return (
     <>
       <BookSearch start={start} end={end} total={total} />
-      <div className="level">
-        <div className="level-right">
-          <div className="level-item">
-            <div className="content">
-              <p>
-                Displaying {start} - {end} of {total} books
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="level-left" style={{ justifyContent: "flex-end" }}>
-          <div className="level-item">
-            <ViewSelector currentView={currentView} handleClick={setCurrentView} />
-          </div>
-        </div>
-      </div>
-      <BooksView currentView={currentView} books={books} />
+      <BooksView
+        start={start}
+        end={end}
+        total={total}
+        currentView={currentView}
+        setCurrentView={setCurrentView}
+        books={books}
+      />
       <Pagination basePath="books" currentPage={currentPage} numPages={numPages} />
     </>
   );

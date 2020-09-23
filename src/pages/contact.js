@@ -1,5 +1,5 @@
 import React from "react";
-import withPageLayout from "../hocs/withPageLayout";
+import withPageLayout from "../components/Layout/withPageLayout";
 
 const Contact = () => (
   <div className="content">

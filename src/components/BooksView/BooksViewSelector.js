@@ -2,12 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faThLarge, faTable } from "@fortawesome/free-solid-svg-icons";
 import css from "classnames";
-
-const VIEW = Object.freeze({
-  CARD: "card",
-  LIST: "list",
-  TABLE: "table",
-});
+import { VIEW } from "../../constants";
 
 export const BooksViewSelector = ({ currentView, handleClick }) => (
   <div className="field has-addons">
