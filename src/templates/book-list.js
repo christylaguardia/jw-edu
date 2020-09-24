@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { graphql } from "gatsby";
 
 import withPageLayout from "../components/Layout/withPageLayout";
@@ -7,9 +7,6 @@ import BookSearch from "../components/BookSearch";
 import { BooksView } from "../components/BooksView/BooksView";
 
 const BookList = ({ data, pageContext }) => {
-  const [keyword, setKeyword] = useState(null);
-  const [sort, setSort] = useState(null);
-
   if (!data || !pageContext) return <p>Loading...</p>;
 
   const { currentPage, limit, numPages, total } = pageContext;

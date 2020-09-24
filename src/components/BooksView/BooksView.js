@@ -17,11 +17,11 @@ export const BooksView = ({ start, end, total, books }) => (
 
       <div className="level-left" style={{ justifyContent: "flex-end" }}>
         <div className="level-item">
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">{/* Sort By */}</label>
+          <div className="field is-horizontal">
+            <div className="field-label is-normal">
+              <label className="label">{/* Sort By */}</label>
             </div>
-            <div class="field-body">
+            <div className="field-body">
               <div className="control">
                 <div className="select">
                   <select>
@@ -34,10 +34,10 @@ export const BooksView = ({ start, end, total, books }) => (
               </div>
             </div>
 
-            <div class="field-label is-normal">
-              <label class="label">{/* View Per Page */}</label>
+            <div className="field-label is-normal">
+              <label className="label">{/* View Per Page */}</label>
             </div>
-            <div class="field-body">
+            <div className="field-body">
               <div className="control">
                 <div className="select">
                   <select>

@@ -89,7 +89,12 @@ const Book = ({ pageContext }) => {
             {averageRating !== undefined && (
               <p>
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <FontAwesomeIcon icon={faStar} size="1x" color={averageRating >= i ? "orange" : "gray"} />
+                  <FontAwesomeIcon
+                    key={`star-${i}`}
+                    icon={faStar}
+                    size="1x"
+                    color={averageRating >= i ? "orange" : "gray"}
+                  />
                 ))}
                 {ratingsCount && ` (${ratingsCount})`}
               </p>

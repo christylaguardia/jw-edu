@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { navigate } from "gatsby";
+import React from "react";
+// import { navigate } from "gatsby";
 import Link from "gatsby-plugin-transition-link/AniLink";
-import { encode } from "qss";
+// import { encode } from "qss";
 
 import { RESOURCE_TYPE } from "../../constants";
 
 export const Search = () => {
-  const [resource, setResource] = useState(RESOURCE_TYPE.BOOKS);
-  const [keyword, setKeyword] = useState("");
+  // const [resource, setResource] = useState(RESOURCE_TYPE.BOOKS);
+  // const [keyword, setKeyword] = useState("");
 
-  const handleResourceChange = event => setResource(event.target.value);
-  const handleKeywordChange = event => setKeyword(event.target.value);
+  // const handleResourceChange = event => setResource(event.target.value);
+  // const handleKeywordChange = event => setKeyword(event.target.value);
 
   const handleSubmit = event => {
     event.preventDefault();
-    navigate(`/${resource}?${encode({ search: keyword })}`);
+    // navigate(`/${resource}?${encode({ search: keyword })}`);
   };
 
   return (
@@ -24,25 +24,20 @@ export const Search = () => {
           <div className="field-body">
             <p className="control">
               <span className="select is-fullwidth">
-                <select name="resource" value={resource} onBlur={handleResourceChange}>
+                <select name="resource">
                   {Object.values(RESOURCE_TYPE).map(resource => (
-                    <option value={resource}>{`${resource.charAt(0).toUpperCase()}${resource.slice(1)}`}</option>
+                    <option key={resource} value={resource}>{`${resource.charAt(0).toUpperCase()}${resource.slice(
+                      1
+                    )}`}</option>
                   ))}
                 </select>
               </span>
             </p>
             <div className="control is-expanded">
-              <input
-                className="input is-fullwidth"
-                name="keyword"
-                type="text"
-                placeholder="Enter a search..."
-                value={keyword}
-                onBlur={handleKeywordChange}
-              />
+              <input className="input is-fullwidth" name="keyword" type="text" placeholder="Enter a search..." />
             </div>
             <div className="control">
-              <button className="button is-dark is-fullwidth" type="submit" disabled={!resource || !keyword}>
+              <button className="button is-dark is-fullwidth" type="submit" disabled={true}>
                 Search
               </button>
             </div>

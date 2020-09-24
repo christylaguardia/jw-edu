@@ -9,8 +9,8 @@ export const Pagination = ({ basePath, currentPage, numPages }) => {
   const pageList = Array.from(Array(numPages).keys());
   const isFirst = currentPage === 1;
   const isLast = currentPage === numPages;
-  const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString();
-  const nextPage = (currentPage + 1).toString();
+  const prevPage = currentPage - 1 === 1 ? "" : currentPage - 1;
+  const nextPage = currentPage + 1;
 
   return (
     <>
@@ -36,7 +36,7 @@ export const Pagination = ({ basePath, currentPage, numPages }) => {
                 <PageLink
                   className={className}
                   basePath={basePath}
-                  text={pageNumber === 1 ? 1 : pageNumber}
+                  text={pageNumber === 1 ? "1" : pageNumber.toString()}
                   number={pageNumber === 1 ? 0 : pageNumber}
                 />
               </li>
