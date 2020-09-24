@@ -7,7 +7,6 @@ import WebsiteCard from "../components/WebsiteCard";
 import Pagination from "../components/Pagination";
 
 const Websites = ({ data, pageContext }) => {
-  // TODO: does this ever happen?
   if (!data || !pageContext) return <p>Loading...</p>;
 
   const { currentPage, numPages } = pageContext;

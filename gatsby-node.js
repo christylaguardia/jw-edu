@@ -1,196 +1,42 @@
-const path = require("path");
-
-const QUERIES = {
-  BOOK_LIST: `
-  {
-    allMongodbGooglebooksapiVolumes(
-      limit: 1000,
-      sort: {fields: volumeInfo___publishedDate, order: DESC},
-      filter: {volumeInfo: {publishedDate: {ne: null}}}
-    ) {
-      edges {
-        node {
-          id
-          volumeInfo {
-            title
-            authors
-            categories
-            publishedDate
-            imageLinks {
-              thumbnail
-            }
-          }
-        }
-      }
-    }
-  }
-  `,
-  BOOK_DETAILS: `
-  {
-    allMongodbGooglebooksapiVolumes(limit: 1000) {
-      edges {
-        node {
-          id
-          selfLink
-          volumeInfo {
-            title
-            subtitle
-            authors
-            categories
-            description
-            imageLinks {
-              smallThumbnail
-              thumbnail
-              small
-              medium
-              large
-              extraLarge
-            }
-            industryIdentifiers {
-              identifier
-              type
-            }
-            publishedDate
-            pageCount
-            averageRating
-            ratingsCount
-          }
-          accessInfo {
-            webReaderLink
-            embeddable
-          }
-          saleInfo {
-            saleability
-            buyLink
-          }
-        }
-      }
-    }
-  }
-  `,
-  WEBSITE_LIST: `
-  {
-    allContentfulWebsite(limit: 1000, filter: { hide: { ne: true } }) {
-      edges {
-        node {
-          id
-          name
-          url
-          contributors {
-            id
-            name
-          }
-          tags {
-            id
-            tag
-          }
-        }
-      }
-    }
-  }
-  `,
-  BLOG: `
-  {
-    allContentfulBlog(limit: 1000, filter: { hide: { ne: true } }) {
-        edges {
-          node {
-            id
-            slug
-            title
-            date
-            markdown {
-              childMarkdownRemark {
-                html
-              }
-            }
-          }
-        }
-      }
-    }
-  `,
-};
-
-function createBookListPages({ result, createPage }) {
-  const books = result.data.allMongodbGooglebooksapiVolumes.edges;
-  const booksTotal = books.length;
-  const booksPerPage = 12;
-  const numPages = Math.ceil(booksTotal / booksPerPage);
-
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/books` : `/books/${i + 1}`,
-      component: path.resolve(`./src/templates/book-list.js`),
-      context: {
-        limit: booksPerPage,
-        skip: i * booksPerPage,
-        numPages,
-        currentPage: i + 1,
-        total: booksTotal,
-      },
-    });
-  });
-}
-
-function createBookDetailPages({ result, createPage }) {
-  result.data.allMongodbGooglebooksapiVolumes.edges.forEach(({ node }) => {
-    createPage({
-      path: `book/${node.id}`,
-      component: path.resolve(`./src/pages/book.js`),
-      context: {
-        node: node,
-      },
-    });
-  });
-}
-
-function createWebsitesPage({ result, createPage }) {
-  const websites = result.data.allContentfulWebsite.edges;
-  const websitesTotal = websites.length;
-  const websitesPerPage = 10;
-  const numPages = Math.ceil(websitesTotal / websitesPerPage);
-
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/websites` : `/websites/${i + 1}`,
-      component: path.resolve(`./src/templates/website-list.js`),
-      context: {
-        limit: websitesPerPage,
-        skip: i * websitesPerPage,
-        numPages,
-        currentPage: i + 1,
-        total: websitesTotal,
-      },
-    });
-  });
-}
-
-function createBlogPages({ result, createPage }) {
-  result.data.allContentfulBlog.edges.forEach(({ node }) => {
-    createPage({
-      path: `blog/${node.slug}`,
-      component: path.resolve(`./src/pages/blog.js`),
-      context: {
-        node: node,
-      },
-    });
-  });
-}
+const SITE_META_DATA = require("./gatsby-node/site-meta-data");
+const SITE_PAGE = require("./gatsby-node/site-page");
+const BOOK_DETAILS = require("./gatsby-node/book-details");
+const BOOK_LIST = require("./gatsby-node/book-list");
+const WEBSITE_LIST = require("./gatsby-node/website-list");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions;
+  // Fetch data
+  const siteMetaDataResult = await graphql(SITE_META_DATA.query);
+  const sitePageResult = await graphql(SITE_PAGE.query);
+  const bookDetailsResult = await graphql(BOOK_DETAILS.query);
+  const bookListResult = await graphql(BOOK_LIST.query);
+  const websiteListResult = await graphql(WEBSITE_LIST.query);
 
-  const bookDetailsResult = await graphql(QUERIES.BOOK_DETAILS);
-  const bookListResult = await graphql(QUERIES.BOOK_LIST);
-  const websiteListResult = await graphql(QUERIES.WEBSITE_LIST);
-  const blogResult = await graphql(QUERIES.BLOG);
+  // console.log('siteMetaDataResult', JSON.stringify(siteMetaDataResult));
+  console.log("sitePageResult", JSON.stringify(sitePageResult));
+  // console.log('bookDetailsResult', JSON.stringify(bookDetailsResult));
+  // console.log('bookListResult', JSON.stringify(bookListResult));
+  // console.log('websiteListResult', JSON.stringify(websiteListResult));
 
-  if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
+  // Fail build on error
+  if (
+    siteMetaDataResult.errors ||
+    sitePageResult.errors ||
+    bookDetailsResult.errors ||
+    bookListResult.errors ||
+    websiteListResult.errors
+  ) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
 
-  createBookListPages({ result: bookListResult, createPage });
-  createBookDetailPages({ result: bookDetailsResult, createPage });
-  createWebsitesPage({ result: websiteListResult, createPage });
-  createBlogPages({ result: blogResult, createPage });
+  // Include the site meta data on every page
+  const siteMetaData = SITE_META_DATA.formatData({ result: siteMetaDataResult });
+  const createPage = pageInfo => actions.createPage({ siteMetaData, ...pageInfo });
+
+  // Create the pages
+  SITE_PAGE.createPage({ result: sitePageResult, createPage });
+  BOOK_DETAILS.createPage({ result: bookDetailsResult, createPage });
+  BOOK_LIST.createPage({ result: bookListResult, createPage });
+  WEBSITE_LIST.createPage({ result: websiteListResult, createPage });
 };

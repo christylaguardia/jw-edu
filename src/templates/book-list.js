@@ -6,12 +6,10 @@ import Pagination from "../components/Pagination";
 import BookSearch from "../components/BookSearch";
 import { BooksView } from "../components/BooksView/BooksView";
 
-import { VIEW } from "../constants";
-
 const BookList = ({ data, pageContext }) => {
-  const [currentView, setCurrentView] = useState(VIEW.CARD);
+  const [keyword, setKeyword] = useState(null);
+  const [sort, setSort] = useState(null);
 
-  // TODO: does this ever happen?
   if (!data || !pageContext) return <p>Loading...</p>;
 
   const { currentPage, limit, numPages, total } = pageContext;
@@ -25,14 +23,7 @@ const BookList = ({ data, pageContext }) => {
   return (
     <>
       <BookSearch start={start} end={end} total={total} />
-      <BooksView
-        start={start}
-        end={end}
-        total={total}
-        currentView={currentView}
-        setCurrentView={setCurrentView}
-        books={books}
-      />
+      <BooksView start={start} end={end} total={total} books={books} />
       <Pagination basePath="books" currentPage={currentPage} numPages={numPages} />
     </>
   );
