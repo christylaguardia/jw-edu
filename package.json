@@ -33,7 +33,6 @@
     "gatsby-transformer-remark": "^2.8.35",
     "graphql-tag": "^2.11.0",
     "gsap": "^3.5.1",
-    "js-search": "^2.0.0",
     "json-concat": "0.0.1",
     "qss": "^2.0.3",
     "query-string": "^6.13.1",

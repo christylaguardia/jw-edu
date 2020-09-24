@@ -9,7 +9,7 @@ export const BooksView = ({ start, end, total, books }) => (
         <div className="level-item">
           <div className="content">
             <p>
-              Displaying {start} - {end} of {total} books
+              Displaying {start} - {end} of {total}
             </p>
           </div>
         </div>
@@ -57,7 +57,7 @@ export const BooksView = ({ start, end, total, books }) => (
 
     <div className="columns is-multiline is-mobile">
       {books.map(({ node }) => (
-        <div key={node.id} className="column is-full-mobile is-one-half-tablet is-one-third-desktop">
+        <div key={node.id} className="column is-full-mobile is-half-tablet is-one-third-desktop">
           <BookCard {...node} />
         </div>
       ))}

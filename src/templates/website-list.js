@@ -2,9 +2,10 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import withPageLayout from "../components/Layout/withPageLayout";
-import WebsiteSearch from "../components/WebsiteSearch";
-import WebsiteCard from "../components/WebsiteCard";
+import { Tabs } from "../components/Layout/Tabs";
 import Pagination from "../components/Pagination";
+// import WebsiteSearch from "../components/WebsiteSearch";
+import WebsiteCard from "../components/WebsiteCard";
 
 const Websites = ({ data, pageContext }) => {
   if (!data || !pageContext) return <p>Loading...</p>;

@@ -4,12 +4,15 @@ import withPageLayout from "../components/Layout/withPageLayout";
 const Page = ({ pageContext }) => {
   if (!pageContext) return <p>Loading...</p>;
 
-  const html = pageContext?.node?.body?.childMarkdownRemark?.html;
+  const { body } = pageContext.node;
+  const html = body?.childMarkdownRemark?.html;
 
   return html ? (
-    <div className="content">
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
+    <>
+      <div className="content">
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    </>
   ) : null;
 };
 

@@ -3,8 +3,6 @@ import React from "react";
 import Link from "gatsby-plugin-transition-link/AniLink";
 // import { encode } from "qss";
 
-import { RESOURCE_TYPE } from "../../constants";
-
 export const Search = () => {
   // const [resource, setResource] = useState(RESOURCE_TYPE.BOOKS);
   // const [keyword, setKeyword] = useState("");
@@ -23,7 +21,7 @@ export const Search = () => {
         <div className="field has-addons is-horizontal">
           <div className="field-body">
             <p className="control">
-              <span className="select is-fullwidth">
+              {/* <span className="select is-fullwidth">
                 <select name="resource">
                   {Object.values(RESOURCE_TYPE).map(resource => (
                     <option key={resource} value={resource}>{`${resource.charAt(0).toUpperCase()}${resource.slice(
@@ -31,7 +29,7 @@ export const Search = () => {
                     )}`}</option>
                   ))}
                 </select>
-              </span>
+              </span> */}
             </p>
             <div className="control is-expanded">
               <input className="input is-fullwidth" name="keyword" type="text" placeholder="Enter a search..." />

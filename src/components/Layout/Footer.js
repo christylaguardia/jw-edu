@@ -1,33 +1,25 @@
 import React from "react";
 import Link from "gatsby-plugin-transition-link/AniLink";
 
-import { SITE_NAME, RESOURCE_TYPE } from "../../constants";
-
-/**
- * TODO: Find more content
- * Privacy Policy
- * Terms of Use
- * Phone number
- * Email address
- * Address
- * Social icons
- */
+import { SITE_NAME, RESOURCE_INFO } from "../../constants";
 
 export const Footer = ({ children }) => (
   <footer className="footer">
     <div className="container">
       <div className="content has-text-centered">
         <div className="columns">
-          <div className="column has-text-left">
-            {Object.values(RESOURCE_TYPE).map(resource => (
-              <Link key={resource} className="navbar-item is-uppercase" to={`/${resource}`}>
-                {resource}
+          {/* <div className="column has-text-left">
+            {RESOURCE_INFO.map(({ path, title }) => (
+              <Link key={path} className="navbar-item is-uppercase" to={`/${path}`}>
+                {title}
               </Link>
             ))}
-            <Link className="navbar-item is-uppercase" to="/about">
+          </div> */}
+          <div className="column has-text-left">
+            <Link className="navbar-item is-uppercase " to="/about">
               About
             </Link>
-            <Link className="navbar-item is-uppercase" to="/contact">
+            <Link className="navbar-item is-uppercase " to="/contact">
               Contact
             </Link>
           </div>

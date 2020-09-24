@@ -2,9 +2,12 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import withPageLayout from "../components/Layout/withPageLayout";
+import { Menu } from "../components/Layout/Menu";
+import { Tabs } from "../components/Layout/Tabs";
 import Pagination from "../components/Pagination";
-import BookSearch from "../components/BookSearch";
-import { BooksView } from "../components/BooksView/BooksView";
+import { BookCard } from "../components/BooksView/BookCard";
+
+import { PATH } from "../constants";
 
 const BookList = ({ data, pageContext }) => {
   if (!data || !pageContext) return <p>Loading...</p>;
@@ -18,11 +21,24 @@ const BookList = ({ data, pageContext }) => {
   const end = start + (limit - 1);
 
   return (
-    <>
-      <BookSearch start={start} end={end} total={total} />
-      <BooksView start={start} end={end} total={total} books={books} />
-      <Pagination basePath="books" currentPage={currentPage} numPages={numPages} />
-    </>
+    <div className="columns">
+      <div className="column is-narrow">
+        <Menu currentPath={PATH.BOOKS} />
+      </div>
+      <div className="colum">
+        <>
+          {/* <Tabs currentPath={PATH.BOOKS} /> */}
+          <div className="columns is-multiline is-mobile">
+            {books.map(({ node }) => (
+              <div key={node.id} className="column is-full-mobile is-half-tablet is-one-third-desktop">
+                <BookCard {...node} />
+              </div>
+            ))}
+          </div>
+          <Pagination basePath="books" currentPage={currentPage} numPages={numPages} />
+        </>
+      </div>
+    </div>
   );
 };
 
