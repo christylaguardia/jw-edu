@@ -1,7 +1,7 @@
 import React from "react";
 
 import withPageLayout from "../components/Layout/withPageLayout";
-import WebsiteCard from "../components/WebsiteCard";
+import { TextCard } from "../components/Card/TextCard";
 
 const Page = ({ pageContext }) => {
   if (!pageContext) return <p>Loading...</p>;
@@ -14,7 +14,7 @@ const Page = ({ pageContext }) => {
     <div className="columns is-multiline is-mobile">
       {websites.map(node => (
         <div key={node.id} className="column is-full-mobile is-full-tablet is-half-desktop">
-          <WebsiteCard {...node} />
+          <TextCard {...node} />
         </div>
       ))}
     </div>

@@ -5,7 +5,7 @@ import withPageLayout from "../components/Layout/withPageLayout";
 import { Tabs } from "../components/Layout/Tabs";
 import Pagination from "../components/Pagination";
 // import WebsiteSearch from "../components/WebsiteSearch";
-import WebsiteCard from "../components/WebsiteCard";
+import { ImageCard } from "../components/Card/ImageCard";
 
 const Websites = ({ data, pageContext }) => {
   if (!data || !pageContext) return <p>Loading...</p>;
@@ -23,7 +23,7 @@ const Websites = ({ data, pageContext }) => {
       <div className="columns is-multiline is-mobile">
         {websites.map(({ node }) => (
           <div key={node.id} className="column is-full-mobile is-full-tablet is-half-desktop">
-            <WebsiteCard {...node} />
+            <ImageCard {...node} />
           </div>
         ))}
       </div>
