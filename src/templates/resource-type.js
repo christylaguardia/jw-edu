@@ -1,18 +1,18 @@
 import React from "react";
 
-import withPageLayout from "../components/Layout/withPageLayout";
+import withResourceLayout from "../components/Layout/withResourceLayout";
 import { TextCard } from "../components/Card/TextCard";
 
 const Page = ({ pageContext }) => {
   if (!pageContext) return <p>Loading...</p>;
 
-  const { slug, websites } = pageContext.node;
+  const { website } = pageContext.node;
 
-  if (!websites) return <h1>None found</h1>;
+  if (!website) return <h1>None found</h1>;
 
   return (
     <div className="columns is-multiline is-mobile">
-      {websites.map(node => (
+      {website.map(node => (
         <div key={node.id} className="column is-full-mobile is-full-tablet is-half-desktop">
           <TextCard {...node} />
         </div>
@@ -21,4 +21,4 @@ const Page = ({ pageContext }) => {
   );
 };
 
-export default withPageLayout(Page);
+export default withResourceLayout(Page);

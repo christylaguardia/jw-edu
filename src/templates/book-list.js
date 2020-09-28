@@ -1,20 +1,20 @@
 import React from "react";
-import { graphql } from "gatsby";
 
-import withPageLayout from "../components/Layout/withPageLayout";
+import withResourceLayout from "../components/Layout/withResourceLayout";
 import Pagination from "../components/Pagination";
 import { BookCard } from "../components/BooksView/BookCard";
 
 const BookList = ({ data, pageContext }) => {
-  if (!data || !pageContext) return <p>Loading...</p>;
+  // if (!data || !pageContext) return <p>Loading...</p>;
 
-  const { currentPage, limit, numPages, total } = pageContext;
+  const { currentPage, numPages } = pageContext;
+  // // const { currentPage, limit, numPages, total } = pageContext;
   const books = data.allMongodbGooglebooksapiVolumes.edges;
 
   if (!books || books.length === 0) return <p>No books found.</p>;
 
-  const start = currentPage === 1 ? 1 : currentPage * limit;
-  const end = start + (limit - 1);
+  // const start = currentPage === 1 ? 1 : currentPage * limit;
+  // const end = start + (limit - 1);
 
   return (
     <>
@@ -30,30 +30,4 @@ const BookList = ({ data, pageContext }) => {
   );
 };
 
-export const bookListQuery = graphql`
-  query BookList($skip: Int!, $limit: Int!) {
-    allMongodbGooglebooksapiVolumes(
-      limit: $limit
-      skip: $skip
-      sort: { fields: volumeInfo___publishedDate, order: DESC }
-      filter: { volumeInfo: { publishedDate: { ne: null } } }
-    ) {
-      edges {
-        node {
-          id
-          volumeInfo {
-            title
-            authors
-            categories
-            publishedDate
-            imageLinks {
-              thumbnail
-            }
-          }
-        }
-      }
-    }
-  }
-`;
-
-export default withPageLayout(BookList);
+export default withResourceLayout(BookList);

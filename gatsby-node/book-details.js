@@ -47,10 +47,13 @@ const query = `
 function createPage({ result, createPage }) {
   result.data.allMongodbGooglebooksapiVolumes.edges.forEach(({ node }) => {
     createPage({
-      path: `book/${node.id}`,
+      path: `/resources/book/details/${node.id}`,
       component: path.resolve(`./src/pages/book.js`),
       context: {
-        node: node,
+        node: {
+          ...node,
+          slug: `book/${node.id}`,
+        },
       },
     });
   });

@@ -2,20 +2,23 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 import { Navigation } from "./Navigation";
+import { Menu } from "./Menu";
 import { Footer } from "./Footer";
 
-function withPageLayout(WrappedComponent) {
+function withResourceLayout(WrappedComponent) {
   return class extends React.Component {
     render() {
       const { pageContext } = this.props;
 
       if (!pageContext || !pageContext?.siteMetaData || !pageContext?.menuItems) return null;
-
       const { menuItems, siteMetaData } = pageContext;
+
       const siteName = siteMetaData["site-name"];
       const siteNameLong = siteMetaData["site-name-long"];
       const siteDescription = siteMetaData["site-description"];
       const siteCopyrightYear = siteMetaData["site-copyright-year"];
+
+      const path = pageContext.node.slug;
 
       return (
         <div className="app">
@@ -25,11 +28,16 @@ function withPageLayout(WrappedComponent) {
             <meta name="description" content={siteDescription} />
           </Helmet>
           <Navigation siteName={siteName} menuItems={menuItems} />
-          <main className="container">
-            <section className="section">
-              <WrappedComponent {...this.props} />
+          <div className="container">
+            <section className="section main-content columns is-fullheight">
+              <aside className="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">
+                <Menu currentPath={path} menuItems={menuItems} />
+              </aside>
+              <main className="container column is-fullheight">
+                <WrappedComponent {...this.props} />
+              </main>
             </section>
-          </main>
+          </div>
           <Footer>
             <p>
               &copy; {siteCopyrightYear} {siteName}
@@ -41,4 +49,4 @@ function withPageLayout(WrappedComponent) {
   };
 }
 
-export default withPageLayout;
+export default withResourceLayout;

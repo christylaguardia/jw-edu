@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import css from "classnames";
 import Link from "gatsby-plugin-transition-link/AniLink";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { SITE_NAME, RESOURCE_INFO } from "../../constants";
-
-export const Navigation = () => {
+export const Navigation = ({ siteName, menuItems }) => {
   const [isActive, setIsActive] = useState(false);
   const handleNavChange = () => setIsActive(!isActive);
 
@@ -14,7 +11,7 @@ export const Navigation = () => {
       <div className="container">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
-            {SITE_NAME.toUpperCase()}
+            {siteName.toUpperCase()}
           </Link>
           <div
             role="button"
@@ -31,11 +28,11 @@ export const Navigation = () => {
         <div id="hamburger-menu" className={css("navbar-menu", { "is-active": isActive })}>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link is-uppercase">Resources</a>
+              <span className="navbar-link is-uppercase">Resources</span>
               <div className="navbar-dropdown">
-                {RESOURCE_INFO.map(({ path, title }) => (
-                  <Link className="navbar-item is-uppercase" key={path} to={`/${path}`}>
-                    {title}
+                {menuItems.map(({ slug, name }) => (
+                  <Link key={slug} className="navbar-item is-uppercase" to={`/resources/${slug}`}>
+                    {name}
                   </Link>
                 ))}
               </div>

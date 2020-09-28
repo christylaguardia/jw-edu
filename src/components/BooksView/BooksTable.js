@@ -9,7 +9,7 @@ export const BooksTable = ({ books }) => (
     </thead>
     <tbody>
       {books.map(({ node }) => (
-        <tr>
+        <tr key={node.id}>
           <td>{node.volumeInfo?.title}</td>
           <td>{node.volumeInfo?.authors.join(", ")}</td>
           <td>{node.volumeInfo?.publishedDate ? node.volumeInfo?.publishedDate.substring(0, 4) : ""}</td>
