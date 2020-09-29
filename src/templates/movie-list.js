@@ -12,13 +12,13 @@ const Movies = ({ pageContext }) => {
 
   return (
     <div className="columns is-multiline is-mobile">
-      {data.map(({ node }) =>
-        !node.Plot || node.Plot === "N/A" ? null : (
+      {data
+        .filter(({ node }) => !!node.Plot && node.Plot !== "N/A") // TODO: this should be part of the query?
+        .map(({ node }) => (
           <div key={node.id} className="column is-full-mobile is-half-tablet is-half-desktop">
             <MovieCard {...node} />
           </div>
-        )
-      )}
+        ))}
     </div>
   );
 };

@@ -2,7 +2,7 @@ const path = require("path");
 
 const query = `
 {
-  allMongodbOmdbapiMovies(sort: {fields: Year, order: DESC}, limit: 100) {
+  allMongodbJwresearchOmdbapi(sort: {fields: Year, order: DESC}, limit: 100) {
     edges {
       node {
         id
@@ -17,12 +17,14 @@ const query = `
         Language
         Plot
         Poster
-        override_poster_url
         Runtime
         Ratings {
           Source
           Value
         }
+        override_poster_url
+        watch_url_prime_video
+        watch_url_youtube
       }
     }
   }
@@ -35,10 +37,9 @@ function createPage({ result, createPage }) {
     path: `/resources/movie`,
     component: path.resolve(`./src/templates/movie-list.js`),
     context: {
-      node: {
-        slug: "/movie",
-      },
-      data: result.data.allMongodbOmdbapiMovies.edges,
+      slug: "/movie",
+      data: result.data.allMongodbJwresearchOmdbapi.edges,
+      total: result.data.allMongodbJwresearchOmdbapi.edges.length,
     },
   });
 }

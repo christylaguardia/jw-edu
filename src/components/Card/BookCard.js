@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "gatsby-plugin-transition-link/AniLink";
 
-import "./BookCard.scss";
+import "./styles.scss";
 
 export const BookCard = ({ id, volumeInfo }) => {
   const { title, authors, publishedDate, imageLinks } = volumeInfo; // TODO: categories
@@ -10,7 +10,7 @@ export const BookCard = ({ id, volumeInfo }) => {
     imageLinks?.thumbnail || imageLinks?.smallThumbnail || "https://bulma.io/images/placeholders/128x128.png";
 
   return (
-    <div className="card book-card-equal-height">
+    <div className="card card-equal-height">
       <div className="card-content">
         <div className="columns is-mobile">
           <div className="column is-narrow">
@@ -30,7 +30,7 @@ export const BookCard = ({ id, volumeInfo }) => {
 
       <div className="card-footer">
         {/* Read or Buy option */}
-        <Link className="card-footer-item" to={`/book/${id}`}>
+        <Link className="card-footer-item" to={`/resources/book/details/${id}`}>
           Details
         </Link>
       </div>

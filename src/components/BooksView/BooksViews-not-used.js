@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BookCard } from "./BookCard";
+import { BookCard } from "../Card/BookCard";
 import { BookListItem } from "./BookListItem";
 import { BooksTable } from "./BooksTable";
 import { VIEW, BooksViewSelector } from "./BooksViewSelector";

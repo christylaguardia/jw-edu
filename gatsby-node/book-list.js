@@ -1,7 +1,7 @@
 const path = require("path");
 
 const query = `{
-  allMongodbGooglebooksapiVolumes(
+  allMongodbJwresearchGooglebooksapi(
     limit: 1000
     sort: { fields: volumeInfo___publishedDate, order: DESC }
     filter: { volumeInfo: { publishedDate: { ne: null } } }
@@ -24,7 +24,7 @@ const query = `{
 }`;
 
 function createPage({ result, createPage }) {
-  const books = result.data.allMongodbGooglebooksapiVolumes.edges;
+  const books = result.data.allMongodbJwresearchGooglebooksapi.edges;
   const booksTotal = books.length;
   const booksPerPage = 12;
   const numPages = Math.ceil(booksTotal / booksPerPage);

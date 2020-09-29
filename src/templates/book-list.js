@@ -2,14 +2,14 @@ import React from "react";
 
 import withResourceLayout from "../components/Layout/withResourceLayout";
 import Pagination from "../components/Pagination";
-import { BookCard } from "../components/BooksView/BookCard";
+import { BookCard } from "../components/Card/BookCard";
 
 const BookList = ({ data, pageContext }) => {
-  // if (!data || !pageContext) return <p>Loading...</p>;
+  if (!data || !pageContext) return null;
 
   const { currentPage, numPages } = pageContext;
   // // const { currentPage, limit, numPages, total } = pageContext;
-  const books = data.allMongodbGooglebooksapiVolumes.edges;
+  const books = data.allMongodbJwresearchGooglebooksapi.edges;
 
   if (!books || books.length === 0) return <p>No books found.</p>;
 
@@ -29,5 +29,32 @@ const BookList = ({ data, pageContext }) => {
     </>
   );
 };
+
+/* Ignore the error.. */
+export const bookListQuery = graphql`
+  query BookList($skip: Int!, $limit: Int!) {
+    allMongodbJwresearchGooglebooksapi(
+      limit: $limit
+      skip: $skip
+      sort: { fields: volumeInfo___publishedDate, order: DESC }
+      filter: { volumeInfo: { publishedDate: { ne: null } } }
+    ) {
+      edges {
+        node {
+          id
+          volumeInfo {
+            title
+            authors
+            categories
+            publishedDate
+            imageLinks {
+              thumbnail
+            }
+          }
+        }
+      }
+    }
+  }
+`;
 
 export default withResourceLayout(BookList);

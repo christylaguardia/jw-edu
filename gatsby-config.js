@@ -35,9 +35,9 @@ module.exports = {
     {
       resolve: "gatsby-source-mongodb",
       options: {
-        dbName: process.env.DB_BOOKS_NAME,
-        collection: process.env.DB_BOOKS_COLLECTION,
-        connectionString: process.env.DB_BOOKS_CONNECTION_STRING,
+        dbName: process.env.DB_NAME,
+        collection: process.env.DB_COLLECTION_BOOKS,
+        connectionString: process.env.DB_CONNECTION_STRING,
         extraParams: {
           // replicaSet: 'Main-shard-0',
           ssl: true,
@@ -49,9 +49,9 @@ module.exports = {
     {
       resolve: "gatsby-source-mongodb",
       options: {
-        dbName: process.env.DB_MOVIES_NAME,
-        collection: process.env.DB_MOVIES_COLLECTION,
-        connectionString: process.env.DB_MOVIES_CONNECTION_STRING,
+        dbName: process.env.DB_NAME,
+        collection: process.env.DB_COLLECTION_MOVIES,
+        connectionString: process.env.DB_CONNECTION_STRING,
         extraParams: {
           // replicaSet: 'Main-shard-0',
           ssl: true,

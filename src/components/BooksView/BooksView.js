@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BookCard } from "./BookCard";
+import { BookCard } from "../Card/BookCard";
 
 export const BooksView = ({ start, end, total, books }) => (
   <>

@@ -18,7 +18,7 @@ function withResourceLayout(WrappedComponent) {
       const siteDescription = siteMetaData["site-description"];
       const siteCopyrightYear = siteMetaData["site-copyright-year"];
 
-      const path = pageContext.node.slug;
+      const path = pageContext?.slug || pageContext.node.slug;
 
       return (
         <div className="app">
@@ -27,7 +27,7 @@ function withResourceLayout(WrappedComponent) {
             <title>{siteNameLong}</title>
             <meta name="description" content={siteDescription} />
           </Helmet>
-          <Navigation siteName={siteName} menuItems={menuItems} />
+          <Navigation siteName={siteName} currentPath={path} menuItems={menuItems} />
           <div className="container">
             <section className="section main-content columns is-fullheight">
               <aside className="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">

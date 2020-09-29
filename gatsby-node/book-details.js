@@ -2,7 +2,7 @@ const path = require("path");
 
 const query = `
 {
-  allMongodbGooglebooksapiVolumes(limit: 1000) {
+  allMongodbJwresearchGooglebooksapi(limit: 1000) {
     edges {
       node {
         id
@@ -45,7 +45,7 @@ const query = `
 `;
 
 function createPage({ result, createPage }) {
-  result.data.allMongodbGooglebooksapiVolumes.edges.forEach(({ node }) => {
+  result.data.allMongodbJwresearchGooglebooksapi.edges.forEach(({ node }) => {
     createPage({
       path: `/resources/book/details/${node.id}`,
       component: path.resolve(`./src/pages/book.js`),

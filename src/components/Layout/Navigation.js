@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import css from "classnames";
 import Link from "gatsby-plugin-transition-link/AniLink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Navigation = ({ siteName, menuItems }) => {
+import { MENU_ICON } from "../../constants";
+
+import "./Navigation.scss";
+
+export const Navigation = ({ siteName, currentPath, menuItems }) => {
   const [isActive, setIsActive] = useState(false);
   const handleNavChange = () => setIsActive(!isActive);
 
   return (
-    <nav className="navbar has-background-light" role="navigation" aria-label="main navigation">
+    <nav className="navigation navbar has-background-light" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
@@ -27,12 +32,15 @@ export const Navigation = ({ siteName, menuItems }) => {
 
         <div id="hamburger-menu" className={css("navbar-menu", { "is-active": isActive })}>
           <div className="navbar-end">
-            <div className="navbar-item has-dropdown is-hoverable">
+            <div className="navbar-item content-mobile">
               <span className="navbar-link is-uppercase">Resources</span>
               <div className="navbar-dropdown">
                 {menuItems.map(({ slug, name }) => (
                   <Link key={slug} className="navbar-item is-uppercase" to={`/resources/${slug}`}>
-                    {name}
+                    <span className="icon" style={{ marginRight: "8px" }}>
+                      <FontAwesomeIcon icon={MENU_ICON[slug]} size="1x" />
+                    </span>
+                    <span>{name}</span>
                   </Link>
                 ))}
               </div>
