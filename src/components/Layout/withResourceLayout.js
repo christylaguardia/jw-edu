@@ -1,22 +1,28 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
+import { siteMetaDataShape, siteMenuShape } from "../../constants/propShapes";
 import { Navigation } from "./Navigation";
 import { Menu } from "./Menu";
 import { Footer } from "./Footer";
 
 function withResourceLayout(WrappedComponent) {
-  return class extends React.Component {
+  class ResourceLayout extends React.Component {
     render() {
       const { pageContext } = this.props;
 
-      if (!pageContext || !pageContext?.siteMetaData || !pageContext?.menuItems) return null;
-      const { menuItems, siteMetaData } = pageContext;
+      if (!pageContext || !pageContext?.siteMetaData || !pageContext?.siteMenu) return null;
 
-      const siteName = siteMetaData["site-name"];
-      const siteNameLong = siteMetaData["site-name-long"];
-      const siteDescription = siteMetaData["site-description"];
-      const siteCopyrightYear = siteMetaData["site-copyright-year"];
+      const {
+        siteMenu,
+        siteMetaData: {
+          "site-name": siteName,
+          "site-name-long": siteNameLong,
+          "site-description": siteDescription,
+          "site-copyright-year": siteCopyrightYear,
+        },
+      } = pageContext;
 
       const path = pageContext?.slug || pageContext.node.slug;
 
@@ -27,18 +33,18 @@ function withResourceLayout(WrappedComponent) {
             <title>{siteNameLong}</title>
             <meta name="description" content={siteDescription} />
           </Helmet>
-          <Navigation siteName={siteName} currentPath={path} menuItems={menuItems} />
-          <div className="container">
+          <Navigation siteName={siteName} currentPath={path} siteMenu={siteMenu} />
+          <main className="container">
             <section className="section main-content columns is-fullheight">
               <aside className="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">
-                <Menu currentPath={path} menuItems={menuItems} />
+                <Menu currentPath={path} siteMenu={siteMenu} />
               </aside>
               <main className="container column is-fullheight">
                 <WrappedComponent {...this.props} />
               </main>
             </section>
-          </div>
-          <Footer>
+          </main>
+          <Footer siteMenu={siteMenu}>
             <p>
               &copy; {siteCopyrightYear} {siteName}
             </p>
@@ -46,7 +52,16 @@ function withResourceLayout(WrappedComponent) {
         </div>
       );
     }
+  }
+
+  ResourceLayout.propTypes = {
+    pageContext: PropTypes.shape({
+      siteMetaData: siteMetaDataShape,
+      siteMenu: siteMenuShape,
+    }),
   };
+
+  return ResourceLayout;
 }
 
 export default withResourceLayout;

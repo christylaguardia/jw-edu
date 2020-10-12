@@ -30,7 +30,7 @@ export const BookCard = ({ id, volumeInfo }) => {
 
       <div className="card-footer">
         {/* Read or Buy option */}
-        <Link className="card-footer-item" to={`/resources/book/details/${id}`}>
+        <Link className="card-footer-item" to={`/book/${id}/details`}>
           Details
         </Link>
       </div>

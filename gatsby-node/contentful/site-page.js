@@ -2,7 +2,7 @@ const path = require("path");
 
 const query = `
 {
-  allContentfulPage(limit: 100) {
+  allContentfulSitePage(limit: 100) {
       edges {
         node {
           id
@@ -20,10 +20,10 @@ const query = `
 `;
 
 function createPage({ result, createPage }) {
-  result.data.allContentfulPage.edges.forEach(({ node }) => {
+  result.data.allContentfulSitePage.edges.forEach(({ node }) => {
     createPage({
       path: `/${node.slug}`,
-      component: path.resolve(`./src/pages/page.js`),
+      component: path.resolve(`./src/pages/sitePage.js`),
       context: {
         node: node,
       },

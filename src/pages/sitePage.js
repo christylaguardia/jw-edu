@@ -1,7 +1,7 @@
 import React from "react";
 import withPageLayout from "../components/Layout/withPageLayout";
 
-const Page = ({ pageContext }) => {
+const SitePage = ({ pageContext }) => {
   if (!pageContext) return null;
 
   const { body } = pageContext.node;
@@ -16,4 +16,4 @@ const Page = ({ pageContext }) => {
   );
 };
 
-export default withPageLayout(Page);
+export default withPageLayout(SitePage);

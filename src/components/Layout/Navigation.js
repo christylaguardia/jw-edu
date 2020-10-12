@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import css from "classnames";
 import Link from "gatsby-plugin-transition-link/AniLink";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { MENU_ICON } from "../../constants";
+import { siteMenuShape } from "../../constants/propShapes";
+import ICONS from "../../constants/icons";
+import PATHS from "../../constants/paths";
 
 import "./Navigation.scss";
 
-export const Navigation = ({ siteName, currentPath, menuItems }) => {
+export const Navigation = ({ siteName, siteMenu }) => {
   const [isActive, setIsActive] = useState(false);
   const handleNavChange = () => setIsActive(!isActive);
 
@@ -15,7 +18,7 @@ export const Navigation = ({ siteName, currentPath, menuItems }) => {
     <nav className="navigation navbar has-background-light" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
-          <Link className="navbar-item" to="/">
+          <Link className="navbar-item" to={PATHS.HOME}>
             {siteName.toUpperCase()}
           </Link>
           <div
@@ -35,21 +38,21 @@ export const Navigation = ({ siteName, currentPath, menuItems }) => {
             <div className="navbar-item content-mobile">
               <span className="navbar-link is-uppercase">Resources</span>
               <div className="navbar-dropdown">
-                {menuItems.map(({ slug, name }) => (
+                {siteMenu.map(({ slug, title }) => (
                   <Link key={slug} className="navbar-item is-uppercase" to={`/resources/${slug}`}>
                     <span className="icon" style={{ marginRight: "8px" }}>
-                      <FontAwesomeIcon icon={MENU_ICON[slug]} size="1x" />
+                      <FontAwesomeIcon icon={ICONS[slug]} size="1x" />
                     </span>
-                    <span>{name}</span>
+                    <span>{title}</span>
                   </Link>
                 ))}
               </div>
             </div>
 
-            <Link className="navbar-item is-uppercase" to="/about">
+            <Link className="navbar-item is-uppercase" to={PATHS.ABOUT}>
               About
             </Link>
-            <Link className="navbar-item is-uppercase" to="/contact">
+            <Link className="navbar-item is-uppercase" to={PATHS.CONTACT}>
               Contact
             </Link>
           </div>
@@ -57,4 +60,9 @@ export const Navigation = ({ siteName, currentPath, menuItems }) => {
       </div>
     </nav>
   );
+};
+
+Navigation.propTypes = {
+  siteName: PropTypes.string.isRequired,
+  siteMenu: siteMenuShape,
 };
