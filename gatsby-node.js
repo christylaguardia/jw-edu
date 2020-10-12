@@ -1,196 +1,64 @@
 const path = require("path");
 
-const QUERIES = {
-  BOOK_LIST: `
-  {
-    allMongodbGooglebooksapiVolumes(
-      limit: 1000,
-      sort: {fields: volumeInfo___publishedDate, order: DESC},
-      filter: {volumeInfo: {publishedDate: {ne: null}}}
-    ) {
-      edges {
-        node {
-          id
-          volumeInfo {
-            title
-            authors
-            categories
-            publishedDate
-            imageLinks {
-              thumbnail
-            }
-          }
-        }
-      }
-    }
-  }
-  `,
-  BOOK_DETAILS: `
-  {
-    allMongodbGooglebooksapiVolumes(limit: 1000) {
-      edges {
-        node {
-          id
-          selfLink
-          volumeInfo {
-            title
-            subtitle
-            authors
-            categories
-            description
-            imageLinks {
-              smallThumbnail
-              thumbnail
-              small
-              medium
-              large
-              extraLarge
-            }
-            industryIdentifiers {
-              identifier
-              type
-            }
-            publishedDate
-            pageCount
-            averageRating
-            ratingsCount
-          }
-          accessInfo {
-            webReaderLink
-            embeddable
-          }
-          saleInfo {
-            saleability
-            buyLink
-          }
-        }
-      }
-    }
-  }
-  `,
-  WEBSITE_LIST: `
-  {
-    allContentfulWebsite(limit: 1000, filter: { hide: { ne: true } }) {
-      edges {
-        node {
-          id
-          name
-          url
-          contributors {
-            id
-            name
-          }
-          tags {
-            id
-            tag
-          }
-        }
-      }
-    }
-  }
-  `,
-  BLOG: `
-  {
-    allContentfulBlog(limit: 1000, filter: { hide: { ne: true } }) {
-        edges {
-          node {
-            id
-            slug
-            title
-            date
-            markdown {
-              childMarkdownRemark {
-                html
-              }
-            }
-          }
-        }
-      }
-    }
-  `,
-};
+const SITE_META_DATA = require("./gatsby-node/contentful/site-meta-data");
+const SITE_MENU = require("./gatsby-node/contentful/site-menu");
+const SITE_PAGE = require("./gatsby-node/contentful/site-page");
 
-function createBookListPages({ result, createPage }) {
-  const books = result.data.allMongodbGooglebooksapiVolumes.edges;
-  const booksTotal = books.length;
-  const booksPerPage = 12;
-  const numPages = Math.ceil(booksTotal / booksPerPage);
-
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/books` : `/books/${i + 1}`,
-      component: path.resolve(`./src/templates/book-list.js`),
-      context: {
-        limit: booksPerPage,
-        skip: i * booksPerPage,
-        numPages,
-        currentPage: i + 1,
-        total: booksTotal,
-      },
-    });
-  });
-}
-
-function createBookDetailPages({ result, createPage }) {
-  result.data.allMongodbGooglebooksapiVolumes.edges.forEach(({ node }) => {
-    createPage({
-      path: `book/${node.id}`,
-      component: path.resolve(`./src/pages/book.js`),
-      context: {
-        node: node,
-      },
-    });
-  });
-}
-
-function createWebsitesPage({ result, createPage }) {
-  const websites = result.data.allContentfulWebsite.edges;
-  const websitesTotal = websites.length;
-  const websitesPerPage = 10;
-  const numPages = Math.ceil(websitesTotal / websitesPerPage);
-
-  Array.from({ length: numPages }).forEach((_, i) => {
-    createPage({
-      path: i === 0 ? `/websites` : `/websites/${i + 1}`,
-      component: path.resolve(`./src/templates/website-list.js`),
-      context: {
-        limit: websitesPerPage,
-        skip: i * websitesPerPage,
-        numPages,
-        currentPage: i + 1,
-        total: websitesTotal,
-      },
-    });
-  });
-}
-
-function createBlogPages({ result, createPage }) {
-  result.data.allContentfulBlog.edges.forEach(({ node }) => {
-    createPage({
-      path: `blog/${node.slug}`,
-      component: path.resolve(`./src/pages/blog.js`),
-      context: {
-        node: node,
-      },
-    });
-  });
-}
+const BOOK_DETAILS = require("./gatsby-node/mongodb/book-details");
+const BOOK_LIST = require("./gatsby-node/mongodb/book-list");
+const MOVIE_LIST = require("./gatsby-node/mongodb/movie-list");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const { createPage } = actions;
+  // Fetch data
+  const [
+    siteMetaDataResult,
+    siteMenuResult,
+    sitePageResult,
+    bookDetailsResult,
+    bookListResult,
+    movieListResult,
+  ] = await Promise.all([
+    graphql(SITE_META_DATA.query),
+    graphql(SITE_MENU.query),
+    graphql(SITE_PAGE.query),
+    graphql(BOOK_DETAILS.query),
+    graphql(BOOK_LIST.query),
+    graphql(MOVIE_LIST.query),
+  ]);
 
-  const bookDetailsResult = await graphql(QUERIES.BOOK_DETAILS);
-  const bookListResult = await graphql(QUERIES.BOOK_LIST);
-  const websiteListResult = await graphql(QUERIES.WEBSITE_LIST);
-  const blogResult = await graphql(QUERIES.BLOG);
-
-  if (bookListResult.errors || bookDetailsResult.errors || websiteListResult.errors || blogResult.errors) {
+  // Fail build on error
+  if (
+    siteMetaDataResult.errors ||
+    siteMenuResult.errors ||
+    sitePageResult.errors ||
+    bookDetailsResult.errors ||
+    bookListResult.errors ||
+    movieListResult.errors
+  ) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
   }
 
-  createBookListPages({ result: bookListResult, createPage });
-  createBookDetailPages({ result: bookDetailsResult, createPage });
-  createWebsitesPage({ result: websiteListResult, createPage });
-  createBlogPages({ result: blogResult, createPage });
+  // Include site content on each page
+  const siteMetaData = SITE_META_DATA.formatData({ result: siteMetaDataResult });
+  const siteMenu = SITE_MENU.formatData({ result: siteMenuResult });
+  const createPage = pageInfo =>
+    actions.createPage({
+      ...pageInfo,
+      context: {
+        ...pageInfo.context,
+        siteMetaData,
+        siteMenu,
+      },
+    });
+
+  // Create the static content pages
+  createPage({ path: `/`, component: path.resolve(`./src/pages/home.js`) });
+  createPage({ path: `/search/`, component: path.resolve(`./src/pages/search.js`) });
+
+  // Create the dynamic content pages
+  SITE_PAGE.createPage({ result: sitePageResult, createPage });
+  BOOK_DETAILS.createPage({ result: bookDetailsResult, createPage });
+  BOOK_LIST.createPage({ result: bookListResult, createPage });
+  MOVIE_LIST.createPage({ result: movieListResult, createPage });
 };

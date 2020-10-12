@@ -3,3 +3,6 @@ Photo by <a href="https://stocksnap.io/author/36296">Clay Banks</a> from <a href
 
 static/img/StockSnap_MXVB7KKVAB.jpg
 Photo by <a href="https://stocksnap.io/author/200">Matthew Henry</a> from <a href="https://stocksnap.io">StockSnap</a>
+
+StockSnap_CN63QSUO8C
+Photo by <a href="https://stocksnap.io/author/20658">Aaron Burden</a> from <a href="https://stocksnap.io">StockSnap</a>

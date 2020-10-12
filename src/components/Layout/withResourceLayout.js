@@ -4,10 +4,11 @@ import { Helmet } from "react-helmet";
 
 import { siteMetaDataShape, siteMenuShape } from "../../constants/propShapes";
 import { Navigation } from "./Navigation";
+import { Menu } from "./Menu";
 import { Footer } from "./Footer";
 
-function withPageLayout(WrappedComponent) {
-  class PageLayout extends React.Component {
+function withResourceLayout(WrappedComponent) {
+  class ResourceLayout extends React.Component {
     render() {
       const { pageContext } = this.props;
 
@@ -23,6 +24,8 @@ function withPageLayout(WrappedComponent) {
         },
       } = pageContext;
 
+      const path = pageContext?.slug || pageContext.node.slug;
+
       return (
         <div className="app">
           <Helmet>
@@ -30,10 +33,15 @@ function withPageLayout(WrappedComponent) {
             <title>{siteNameLong}</title>
             <meta name="description" content={siteDescription} />
           </Helmet>
-          <Navigation siteName={siteName} siteMenu={siteMenu} />
+          <Navigation siteName={siteName} currentPath={path} siteMenu={siteMenu} />
           <main className="container">
-            <section className="section">
-              <WrappedComponent {...this.props} />
+            <section className="section main-content columns is-fullheight">
+              <aside className="column is-2 is-narrow-mobile is-fullheight is-hidden-mobile">
+                <Menu currentPath={path} siteMenu={siteMenu} />
+              </aside>
+              <main className="container column is-fullheight">
+                <WrappedComponent {...this.props} />
+              </main>
             </section>
           </main>
           <Footer siteMenu={siteMenu}>
@@ -46,14 +54,14 @@ function withPageLayout(WrappedComponent) {
     }
   }
 
-  PageLayout.propTypes = {
+  ResourceLayout.propTypes = {
     pageContext: PropTypes.shape({
       siteMetaData: siteMetaDataShape,
       siteMenu: siteMenuShape,
     }),
   };
 
-  return PageLayout;
+  return ResourceLayout;
 }
 
-export default withPageLayout;
+export default withResourceLayout;
