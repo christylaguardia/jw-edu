@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "gatsby-plugin-transition-link/AniLink";
 
+import PATHS from "../../constants/paths";
 import "./styles.scss";
 
 export const BookCard = ({ id, volumeInfo }) => {
@@ -30,7 +31,7 @@ export const BookCard = ({ id, volumeInfo }) => {
 
       <div className="card-footer">
         {/* Read or Buy option */}
-        <Link className="card-footer-item" to={`/book/${id}/details`}>
+        <Link className="card-footer-item" to={PATHS.BOOKS_DETAILS(id)}>
           Details
         </Link>
       </div>
