@@ -43,9 +43,9 @@ const Book = ({ pageContext }) => {
         <script type="text/javascript">google.books.load();</script>
       </Helmet> */}
 
-      <div className="columns is-mobile">
+      <div className="columns is-mobile is-multiline">
         {imageLinks && (
-          <div className="column is-one-third is-full-mobile">
+          <div className="column is-full-mobile is-one-third-tablet">
             <figure className="image image is-2by3">
               <img src={imageSrc} alt={title} />
             </figure>

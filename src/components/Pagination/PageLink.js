@@ -12,7 +12,7 @@ PageLink.propTypes = {
   className: PropTypes.string,
   basePath: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
+  number: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 };
 
 export default PageLink;

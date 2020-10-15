@@ -33,15 +33,19 @@ const query = `
 `;
 
 function createPage({ result, createPage }) {
+  const slug = "/movies";
+
   createPage({
-    path: `/resources/movie`,
-    component: path.resolve(`./src/templates/movie-list.js`),
+    path: slug,
+    component: path.resolve(`./src/pages/movies.js`),
     context: {
-      slug: "/movie",
+      slug: slug,
       data: result.data.allMongodbJwresearchOmdbapi.edges,
       total: result.data.allMongodbJwresearchOmdbapi.edges.length,
     },
   });
+
+  console.log(`created page ${slug}`);
 }
 
 module.exports = { query, createPage };

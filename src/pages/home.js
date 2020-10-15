@@ -25,7 +25,7 @@ const HomePage = ({ pageContext }) => {
   } = pageContext;
 
   return (
-    <div className="app">
+    <div className="app has-navbar-fixed-top">
       <Helmet>
         <meta charSet="utf-8" />
         <title>{siteNameLong}</title>

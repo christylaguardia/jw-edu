@@ -34,13 +34,13 @@ export const MovieCard = ({
     <div className="card card-equal-height">
       <div className="card-content">
         <div className="columns is-mobile is-multiline">
-          <div className="column is-narrow">
+          <div className="column is-full-mobile">
             <figure className="image card-figure">
               <img src={imgSrc} alt={Title} />
             </figure>
           </div>
 
-          <div className="column is-half-desktop">
+          <div className="column is-full-mobile">
             <p className="title is-family-primary	is-5">
               <strong>{Title}</strong>
               {Year && (
@@ -51,13 +51,42 @@ export const MovieCard = ({
               )}
             </p>
             {genre && <p className="subtitle">{genre}</p>}
-            {plot && <p>{plot}</p>}
-            {smallInfo && <p className="is-3 mt-0">{smallInfo}</p>}
+            {plot && (
+              <>
+                <p>{plot}</p>
+                <br />
+              </>
+            )}
+
+            {/* {smallInfo && <p className="is-3 mt-0">{smallInfo}</p>} */}
+            {(smallInfo || imdbUrl || watch_url_prime_video || watch_url_youtube) && (
+              <p className="is-3 mt-0">
+                {smallInfo}
+                {(imdbUrl || watch_url_prime_video || watch_url_youtube) && <span> · </span>}
+                {imdbUrl && (
+                  <a target="_blank" rel="noreferrer" href={imdbUrl}>
+                    IMDb
+                  </a>
+                )}
+                {imdbUrl && (watch_url_prime_video || watch_url_youtube) && <span> · </span>}
+                {watch_url_prime_video && (
+                  <a target="_blank" rel="noreferrer" href={watch_url_prime_video}>
+                    Prime Video
+                  </a>
+                )}
+                {(imdbUrl || watch_url_prime_video) && watch_url_youtube && <span> · </span>}
+                {watch_url_youtube && (
+                  <a target="_blank" rel="noreferrer" href={watch_url_youtube}>
+                    YouTube
+                  </a>
+                )}
+              </p>
+            )}
           </div>
         </div>
       </div>
 
-      <div className="card-footer">
+      {/* <div className="card-footer">
         {imdbUrl && (
           <a className="card-footer-item" target="_blank" rel="noreferrer" href={imdbUrl}>
             Read more on IMDb
@@ -73,7 +102,7 @@ export const MovieCard = ({
             Watch on YouTube
           </a>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

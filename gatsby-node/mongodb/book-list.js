@@ -47,6 +47,8 @@ function createPage({ result, createPage }) {
       },
     });
   });
+
+  console.log(`created page ${slug}`);
 }
 
 module.exports = { query, createPage };

@@ -32,8 +32,10 @@ const plugins = [
     resolve: `gatsby-plugin-prefetch-google-fonts`,
     options: {
       fonts: [
-        { family: "Josefin Sans", variants: ["300", "500", "700"] },
-        { family: "Lato", variants: ["300", "500", "700"] },
+        // { family: "Josefin Sans", variants: ["300", "500", "700"] },
+        // { family: "Lato", variants: ["300", "500", "700"] },
+        { family: "Frank Ruhl Libre", variants: ["300", "500", "700"] },
+        { family: "Libre Baskerville", variants: ["300", "500", "700"] },
       ],
     },
   },

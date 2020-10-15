@@ -6,7 +6,7 @@
 // Adds a class name to the body element
 exports.onRenderBody = ({ setBodyAttributes }, pluginOptions) => {
   setBodyAttributes({
-    className: "my-body-class",
+    className: "has-navbar-fixed-top",
   });
 };
 

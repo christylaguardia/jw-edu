@@ -6,7 +6,7 @@ const SITE_PAGE = require("./gatsby-node/contentful/site-page");
 
 const BOOK_DETAILS = require("./gatsby-node/mongodb/book-details");
 const BOOK_LIST = require("./gatsby-node/mongodb/book-list");
-const MOVIE_LIST = require("./gatsby-node/mongodb/movie-list");
+const MOVIES = require("./gatsby-node/mongodb/movies");
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
   // Fetch data
@@ -16,14 +16,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     sitePageResult,
     bookDetailsResult,
     bookListResult,
-    movieListResult,
+    moviesResult,
   ] = await Promise.all([
     graphql(SITE_META_DATA.query),
     graphql(SITE_MENU.query),
     graphql(SITE_PAGE.query),
     graphql(BOOK_DETAILS.query),
     graphql(BOOK_LIST.query),
-    graphql(MOVIE_LIST.query),
+    graphql(MOVIES.query),
   ]);
 
   // Fail build on error
@@ -33,7 +33,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     sitePageResult.errors ||
     bookDetailsResult.errors ||
     bookListResult.errors ||
-    movieListResult.errors
+    moviesResult.errors
   ) {
     reporter.panicOnBuild(`Error while running GraphQL query.`);
     return;
@@ -54,11 +54,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Create the static content pages
   createPage({ path: `/`, component: path.resolve(`./src/pages/home.js`) });
-  createPage({ path: `/search/`, component: path.resolve(`./src/pages/search.js`) });
+  createPage({ path: `/search`, component: path.resolve(`./src/pages/search.js`) });
 
   // Create the dynamic content pages
   SITE_PAGE.createPage({ result: sitePageResult, createPage });
   BOOK_DETAILS.createPage({ result: bookDetailsResult, createPage });
   BOOK_LIST.createPage({ result: bookListResult, createPage });
-  MOVIE_LIST.createPage({ result: movieListResult, createPage });
+  MOVIES.createPage({ result: moviesResult, createPage });
 };

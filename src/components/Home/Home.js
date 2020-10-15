@@ -12,6 +12,7 @@ export const Home = ({ siteNameLong, siteDescription }) => (
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
       backgroundPosition: "center",
+      filter: "grayscale(70%)",
     }}>
     <div className="hero-body" style={{ paddingLeft: 0, paddingRight: 0 }}>
       <div className="box is-radiusless	has-background-light" style={{ opacity: ".8", padding: "2rem" }}>

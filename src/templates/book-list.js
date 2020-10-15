@@ -20,7 +20,7 @@ const BookList = ({ data, pageContext }) => {
     <>
       <div className="columns is-multiline is-mobile">
         {books.map(({ node }) => (
-          <div key={node.id} className="column is-full-mobile is-half-tablet is-one-third-widescreen">
+          <div key={node.id} className="column is-full-mobile is-half-tablet is-one-third-fullhd">
             <BookCard {...node} />
           </div>
         ))}

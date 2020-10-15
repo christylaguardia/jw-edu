@@ -15,7 +15,7 @@ export const Navigation = ({ siteName, siteMenu }) => {
   const handleNavChange = () => setIsActive(!isActive);
 
   return (
-    <nav className="navigation navbar has-background-light" role="navigation" aria-label="main navigation">
+    <nav className="navigation navbar has-background-light is-fixed-top" role="navigation" aria-label="main navigation">
       <div className="container">
         <div className="navbar-brand">
           <Link className="navbar-item" to={PATHS.HOME}>

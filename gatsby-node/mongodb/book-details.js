@@ -46,16 +46,20 @@ const query = `
 
 function createPage({ result, createPage }) {
   result.data.allMongodbJwresearchGooglebooksapi.edges.forEach(({ node }) => {
+    const slug = `/books/${node.id}/details`;
+
     createPage({
-      path: `/books/${node.id}/details`,
+      path: slug,
       component: path.resolve(`./src/pages/book.js`),
       context: {
         node: {
           ...node,
-          slug: `book/${node.id}`,
+          slug: slug,
         },
       },
     });
+
+    console.log(`created page ${slug}`);
   });
 }
 
