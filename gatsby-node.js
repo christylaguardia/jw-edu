@@ -53,8 +53,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     });
 
   // Create the static content pages
-  createPage({ path: `/`, component: path.resolve(`./src/pages/home.js`) });
-  createPage({ path: `/search`, component: path.resolve(`./src/pages/search.js`) });
+  createPage({ path: `/`, component: path.resolve(`./src/templates/home.js`) });
+  createPage({ path: `/search`, component: path.resolve(`./src/templates/search.js`) });
 
   // Create the dynamic content pages
   SITE_PAGE.createPage({ result: sitePageResult, createPage });

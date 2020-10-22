@@ -50,7 +50,7 @@ function createPage({ result, createPage }) {
 
     createPage({
       path: slug,
-      component: path.resolve(`./src/pages/book.js`),
+      component: path.resolve(`./src/templates/book.js`),
       context: {
         node: {
           ...node,

@@ -23,7 +23,7 @@ function createPage({ result, createPage }) {
   result.data.allContentfulSitePage.edges.forEach(({ node }) => {
     createPage({
       path: `/${node.slug}`,
-      component: path.resolve(`./src/pages/sitePage.js`),
+      component: path.resolve(`./src/templates/sitePage.js`),
       context: {
         node: node,
       },

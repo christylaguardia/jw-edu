@@ -37,7 +37,7 @@ function createPage({ result, createPage }) {
 
   createPage({
     path: slug,
-    component: path.resolve(`./src/pages/movies.js`),
+    component: path.resolve(`./src/templates/movies.js`),
     context: {
       slug: slug,
       data: result.data.allMongodbJwresearchOmdbapi.edges,
