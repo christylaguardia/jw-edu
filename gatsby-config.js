@@ -49,13 +49,7 @@ const plugins = [
   },
 ];
 
-const dbPlugins = [
-  process.env.DB_COLLECTION_GOOGLE_BOOKS_API,
-  process.env.DB_COLLECTION_OMDB_API,
-  process.env.DB_COLLECTION_OPEN_LIBRARY_BOOKS_API,
-  process.env.DB_COLLECTION_TAGS,
-  process.env.DB_COLLECTION_WEBSITES,
-].map(collection => ({
+const dbPlugins = ["google-books-api", "omdb-api", "open-library-books-api", "tags", "websites"].map(collection => ({
   resolve: "gatsby-source-mongodb",
   options: {
     dbName: process.env.DB_NAME,
