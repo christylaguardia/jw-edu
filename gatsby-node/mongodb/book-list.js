@@ -30,17 +30,21 @@ function createPage({ result, createPage }) {
   const numPages = Math.ceil(booksTotal / booksPerPage);
 
   Array.from({ length: numPages }).forEach((_, i) => {
-    const slug = i === 0 ? `/books` : `/books/${i + 1}`;
+    const basePath = "/books";
+    const slug = i === 0 ? basePath : `${basePath}/${i + 1}`;
 
     createPage({
       path: slug,
-      component: path.resolve(`./src/templates/book-list.js`),
+      component: path.resolve("./src/templates/view.js"),
       context: {
+        basePath,
+        slug,
         limit: booksPerPage,
         skip: i * booksPerPage,
         numPages,
         currentPage: i + 1,
         total: booksTotal,
+        // THis is not needed?
         node: {
           slug,
         },
